@@ -1,620 +1,1353 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shyam Enterprises | Premium Garment Manufacturing</title>
-    
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
-    
-    <!-- Icons -->
-    <link rel="icon" href="image.png" type="image/png">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>SHYAM ENTERPRISES | Premium Garment Manufacturer | Govt Approved</title>
+<meta name="description" content="Shyam Enterprises - Government approved premium garment manufacturer in Patna. Bulk orders, school uniforms, corporate wear, custom garments for wholesalers & retailers.">
+<link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-    <style>
-        /* --- VARIABLES --- */
-        :root {
-            --primary: #0f172a;       /* Midnight Blue */
-            --accent: #2563eb;        /* Royal Blue */
-            --gold: #d97706;          /* Gold Accent */
-            --bg-white: #ffffff;
-            --bg-light: #f8fafc;
-            --text-dark: #1e293b;
-            --text-gray: #64748b;
-            --border: #e2e8f0;
-            --shadow: 0 10px 30px -10px rgba(0,0,0,0.1);
-            --drawer-width: 280px;
-        }
+body {
+  font-family: 'Inter', sans-serif;
+  background: #fafbfc;
+  color: #1a1f2e;
+  overflow-x: hidden;
+}
 
-        * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
+:root {
+  --primary: #1e4a76;
+  --primary-dark: #0f3a5e;
+  --primary-light: #3a6e9e;
+  --accent: #d4a13e;
+  --accent-dark: #b8892c;
+  --accent-light: #e8c06e;
+  --gray-50: #f8f9fc;
+  --gray-100: #f0f2f6;
+  --gray-200: #e4e8ed;
+  --gray-300: #d0d6de;
+  --gray-600: #6c757d;
+  --gray-700: #495057;
+  --gray-800: #2c3e50;
+  --gray-900: #1a2a3a;
+  --white: #ffffff;
+  --shadow-sm: 0 2px 8px rgba(0,0,0,0.04), 0 4px 12px rgba(0,0,0,0.02);
+  --shadow-md: 0 8px 24px rgba(0,0,0,0.05), 0 2px 6px rgba(0,0,0,0.02);
+  --shadow-lg: 0 20px 40px -12px rgba(0,0,0,0.1);
+  --shadow-xl: 0 24px 48px -12px rgba(0,0,0,0.12);
+  --radius-sm: 12px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --radius-xl: 32px;
+}
 
-        body {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            background-color: var(--bg-white);
-            color: var(--text-dark);
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
+/* Scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--gray-100); }
+::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 10px; }
 
-        h1, h2, h3, h4 { font-weight: 800; line-height: 1.2; color: var(--primary); }
-        .serif { font-family: 'Playfair Display', serif; font-style: italic; }
-        
-        a { text-decoration: none; color: inherit; transition: 0.3s; }
-        ul { list-style: none; }
-        img { max-width: 100%; height: auto; display: block; }
+/* Progress Bar */
+.progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 0%;
+  height: 3px;
+  background: linear-gradient(90deg, var(--primary), var(--accent));
+  z-index: 10000;
+  transition: width 0.1s ease;
+}
 
-        /* --- UTILITIES --- */
-        .container { width: 100%; max-width: 1200px; margin: 0 auto; padding: 0 20px; }
-        .section-padding { padding: 80px 0; }
-        
-        .btn {
-            display: inline-flex; align-items: center; justify-content: center;
-            padding: 12px 28px; border-radius: 50px; font-weight: 600;
-            cursor: pointer; transition: 0.3s; gap: 8px; font-size: 0.95rem;
-        }
-        .btn-primary { background: var(--primary); color: white; border: 2px solid var(--primary); }
-        .btn-primary:hover { background: transparent; color: var(--primary); }
-        .btn-outline { background: transparent; border: 2px solid var(--border); color: var(--primary); }
-        .btn-outline:hover { border-color: var(--primary); background: var(--bg-light); }
+/* Navbar */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  padding: 0 5%;
+  height: 76px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: all 0.3s cubic-bezier(0.16,1,0.3,1);
+  background: rgba(255,255,255,0.94);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(0,0,0,0.06);
+}
+.navbar.scrolled {
+  height: 64px;
+  background: rgba(255,255,255,0.98);
+  box-shadow: var(--shadow-sm);
+}
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.logo-icon {
+  width: 42px;
+  height: 42px;
+  background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 18px;
+  color: white;
+}
+.logo-text {
+  font-weight: 800;
+  font-size: 20px;
+  letter-spacing: -0.3px;
+  color: var(--gray-900);
+}
+.logo-text span {
+  background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  list-style: none;
+}
+.nav-links a {
+  padding: 8px 18px;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--gray-700);
+  border-radius: 40px;
+  transition: all 0.3s;
+  text-decoration: none;
+}
+.nav-links a:hover, .nav-links a.active {
+  color: var(--primary);
+  background: rgba(30,74,118,0.08);
+}
+.nav-cta {
+  background: var(--primary) !important;
+  color: white !important;
+  padding: 8px 22px !important;
+}
+.nav-cta:hover {
+  background: var(--primary-dark) !important;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(30,74,118,0.2);
+}
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+}
+.hamburger span {
+  width: 24px;
+  height: 2px;
+  background: var(--gray-800);
+  transition: all 0.3s;
+  border-radius: 2px;
+}
+.mobile-menu {
+  display: none;
+  position: fixed;
+  top: 76px;
+  left: 0;
+  right: 0;
+  background: white;
+  padding: 20px 24px 32px;
+  flex-direction: column;
+  gap: 12px;
+  z-index: 999;
+  border-bottom: 1px solid var(--gray-200);
+  box-shadow: var(--shadow-md);
+}
+.mobile-menu a {
+  padding: 14px 16px;
+  color: var(--gray-700);
+  text-decoration: none;
+  font-weight: 500;
+  border-radius: 14px;
+  transition: all 0.2s;
+  font-size: 16px;
+}
+.mobile-menu a:hover {
+  background: var(--gray-100);
+  color: var(--primary);
+}
 
-        /* --- SCROLL PROGRESS BAR --- */
-        #scroll-progress {
-            position: fixed; top: 0; left: 0; height: 3px; background: var(--accent);
-            z-index: 2000; width: 0%; transition: width 0.1s;
-        }
+/* Container */
+.container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 5%;
+}
 
-        /* --- NAVBAR --- */
-        .navbar {
-            position: fixed; top: 0; left: 0; width: 100%; z-index: 1000;
-            background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px);
-            border-bottom: 1px solid var(--border); padding: 15px 0;
-        }
-        .nav-inner { display: flex; justify-content: space-between; align-items: center; }
-        
-        .logo-container { display: flex; align-items: center; gap: 10px; }
-        .logo-img { height: 40px; width: auto; object-fit: contain; } 
-        .logo-text { font-size: 1.2rem; font-weight: 900; color: var(--primary); letter-spacing: -0.5px; }
+/* Buttons */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 32px;
+  background: var(--primary);
+  color: white;
+  font-weight: 600;
+  font-size: 15px;
+  border-radius: 40px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+.btn-primary:hover {
+  background: var(--primary-dark);
+  transform: translateY(-3px);
+  box-shadow: 0 12px 28px rgba(30,74,118,0.25);
+}
+.btn-outline {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 32px;
+  background: transparent;
+  color: var(--gray-800);
+  font-weight: 600;
+  font-size: 15px;
+  border-radius: 40px;
+  border: 1.5px solid var(--gray-300);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+.btn-outline:hover {
+  border-color: var(--primary);
+  color: var(--primary);
+  transform: translateY(-3px);
+  background: rgba(30,74,118,0.02);
+}
+.btn-accent {
+  background: var(--accent);
+  color: var(--gray-900);
+}
+.btn-accent:hover {
+  background: var(--accent-dark);
+  box-shadow: 0 12px 28px rgba(212,161,62,0.3);
+}
 
-        /* Desktop Menu (Hidden on Mobile) */
-        .desktop-menu { display: none; gap: 30px; }
-        .desktop-link { font-weight: 500; font-size: 0.95rem; }
-        .desktop-link:hover { color: var(--accent); }
+/* Sections */
+.section {
+  padding: 80px 0;
+}
+.section-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 16px;
+}
+.section-title {
+  font-size: clamp(32px, 5vw, 46px);
+  font-weight: 800;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  color: var(--gray-900);
+}
+.section-title span {
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.section-sub {
+  font-size: 16px;
+  color: var(--gray-600);
+  line-height: 1.6;
+  max-width: 560px;
+  margin-top: 16px;
+}
 
-        /* Left Toggle Button */
-        .mobile-toggle { 
-            display: block; font-size: 1.5rem; cursor: pointer; color: var(--primary); 
-            padding: 5px; margin-right: 15px;
-            background: red;
-        }
+/* Hero Section */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding-top: 80px;
+  position: relative;
+  background: linear-gradient(135deg, #f5f7fc 0%, #ffffff 100%);
+}
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 50px;
+  align-items: center;
+}
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 16px;
+  background: rgba(212,161,62,0.12);
+  border-radius: 40px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--accent-dark);
+  margin-bottom: 24px;
+}
+.hero-title {
+  font-size: clamp(40px, 6vw, 68px);
+  font-weight: 800;
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+  color: var(--gray-900);
+}
+.hero-title .gradient {
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.hero-desc {
+  font-size: 17px;
+  color: var(--gray-600);
+  line-height: 1.6;
+  margin: 24px 0 32px;
+  max-width: 500px;
+}
+.hero-buttons {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.hero-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: var(--gray-200);
+  border-radius: 20px;
+  overflow: hidden;
+  margin-top: 48px;
+}
+.stat-card {
+  background: white;
+  padding: 18px 12px;
+  text-align: center;
+}
+.stat-number {
+  font-size: 28px;
+  font-weight: 800;
+  color: var(--primary);
+}
+.stat-label {
+  font-size: 12px;
+  color: var(--gray-600);
+  margin-top: 4px;
+}
+.hero-image {
+  position: relative;
+}
+.hero-card {
+  background: white;
+  border-radius: 32px;
+  overflow: hidden;
+  box-shadow: var(--shadow-xl);
+  border: 1px solid var(--gray-200);
+}
+.hero-img-placeholder {
+  height: 320px;
+  background: linear-gradient(135deg, #e8edf5, #dce3ec);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 16px;
+}
+.hero-img-icon {
+  font-size: 64px;
+  opacity: 0.5;
+}
+.hero-img-text {
+  font-weight: 600;
+  color: var(--gray-600);
+}
+.hero-tag {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  background: white;
+  padding: 10px 18px;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  box-shadow: var(--shadow-md);
+  border: 1px solid var(--gray-200);
+}
+.tag-dot {
+  width: 8px;
+  height: 8px;
+  background: #10b981;
+  border-radius: 50%;
+  animation: pulse 2s infinite;
+}
+@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
 
-        /* --- LEFT DRAWER --- */
-        .drawer-overlay {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.5); z-index: 1001;
-            opacity: 0; visibility: hidden; transition: 0.3s;
-        }
-        .drawer-overlay.active { opacity: 1; visibility: visible; }
+/* Marquee */
+.marquee {
+  background: white;
+  border-top: 1px solid var(--gray-200);
+  border-bottom: 1px solid var(--gray-200);
+  padding: 14px 0;
+  overflow: hidden;
+}
+.marquee-track {
+  display: flex;
+  gap: 40px;
+  width: max-content;
+  animation: marquee 25s linear infinite;
+}
+.marquee-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--gray-700);
+  white-space: nowrap;
+}
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
 
-        .drawer {
-            position: fixed; top: 0; left: 0;
-            width: var(--drawer-width); height: 100%;
-            background: white; z-index: 1002;
-            transform: translateX(-100%); transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            padding: 30px; display: flex; flex-direction: column;
-            box-shadow: 5px 0 30px rgba(0,0,0,0.1);
-        }
-        .drawer.active { transform: translateX(0); }
+/* Product Cards */
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 28px;
+  margin-top: 48px;
+}
+.product-card {
+  background: white;
+  border-radius: 24px;
+  overflow: hidden;
+  border: 1px solid var(--gray-200);
+  transition: all 0.4s cubic-bezier(0.2,0.9,0.4,1.1);
+  cursor: pointer;
+}
+.product-card:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-xl);
+  border-color: var(--accent-light);
+}
+.product-img {
+  height: 210px;
+  background: linear-gradient(135deg, #f0f4fa, #e8edf5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 56px;
+  position: relative;
+}
+.product-badge {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-size: 10px;
+  font-weight: 700;
+  background: var(--accent);
+  color: white;
+}
+.product-body {
+  padding: 22px;
+}
+.product-cat {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 8px;
+}
+.product-name {
+  font-size: 19px;
+  font-weight: 700;
+  color: var(--gray-900);
+  margin-bottom: 8px;
+}
+.product-desc {
+  font-size: 13px;
+  color: var(--gray-600);
+  line-height: 1.5;
+  margin-bottom: 16px;
+}
+.product-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.product-price {
+  font-weight: 700;
+  color: var(--primary);
+}
+.product-btn {
+  padding: 7px 18px;
+  border-radius: 30px;
+  background: transparent;
+  border: 1px solid var(--gray-300);
+  font-size: 12px;
+  font-weight: 600;
+  transition: all 0.2s;
+  cursor: pointer;
+}
+.product-btn:hover {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: white;
+}
 
-        .drawer-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 40px; }
-        .close-btn { font-size: 1.5rem; cursor: pointer; color: var(--text-gray); }
-        
-        .drawer-links { display: flex; flex-direction: column; gap: 20px; }
-        .drawer-link { font-size: 1.1rem; font-weight: 600; color: var(--text-dark); border-bottom: 1px solid var(--bg-light); padding-bottom: 10px; }
-        .drawer-link:hover { color: var(--accent); padding-left: 5px; }
+/* Service Cards */
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 28px;
+  margin-top: 48px;
+}
+.service-card {
+  background: white;
+  padding: 30px;
+  border-radius: 24px;
+  border: 1px solid var(--gray-200);
+  transition: all 0.3s ease;
+}
+.service-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--primary-light);
+}
+.service-icon {
+  width: 54px;
+  height: 54px;
+  background: rgba(30,74,118,0.08);
+  border-radius: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 26px;
+  margin-bottom: 20px;
+}
+.service-name {
+  font-size: 19px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+.service-desc {
+  font-size: 13px;
+  color: var(--gray-600);
+  line-height: 1.6;
+}
 
-        .drawer-footer { margin-top: auto; padding-top: 20px; border-top: 1px solid var(--border); }
-        .drawer-socials { display: flex; gap: 15px; margin-top: 15px; }
-        .drawer-socials i { font-size: 1.2rem; color: var(--text-gray); cursor: pointer; }
-        .drawer-socials i:hover { color: var(--accent); }
+/* Filter Bar */
+.filter-bar {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin: 40px 0 32px;
+}
+.filter-btn {
+  padding: 8px 22px;
+  border-radius: 40px;
+  font-size: 13px;
+  font-weight: 500;
+  background: white;
+  border: 1px solid var(--gray-200);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.filter-btn.active, .filter-btn:hover {
+  background: var(--primary);
+  color: white;
+  border-color: var(--primary);
+}
 
-        /* --- HERO SECTION --- */
-        .hero {
-            padding-top: 120px; padding-bottom: 60px;
-            background: radial-gradient(circle at top right, #eff6ff, #fff);
-            min-height: 100vh; display: flex; align-items: center;
-        }
-        .hero-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: center; }
-        
-        .hero-tag {
-            display: inline-block; padding: 6px 16px; background: #dbeafe;
-            color: var(--accent); border-radius: 30px; font-size: 0.8rem; font-weight: 700;
-            margin-bottom: 20px; text-transform: uppercase;
-        }
-        .hero-title { font-size: 3.5rem; margin-bottom: 20px; line-height: 1.1; }
-        .hero-desc { font-size: 1.1rem; color: var(--text-gray); margin-bottom: 30px; max-width: 500px; }
-        
-        .hero-img-box { position: relative; }
-        .hero-img { border-radius: 20px; box-shadow: var(--shadow); transform: rotate(2deg); transition: 0.5s; width: 100%; }
-        .hero-img:hover { transform: rotate(0); }
+/* Gallery */
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+  margin-top: 48px;
+}
+.gallery-item {
+  background: white;
+  border-radius: 20px;
+  overflow: hidden;
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 44px;
+  border: 1px solid var(--gray-200);
+  transition: all 0.3s;
+  cursor: pointer;
+}
+.gallery-item:hover {
+  transform: scale(0.97);
+  box-shadow: var(--shadow-md);
+}
+.gallery-tall { grid-row: span 2; aspect-ratio: auto; min-height: 260px; }
+.gallery-wide { grid-column: span 2; }
 
-        /* --- WHY CHOOSE US (NEW) --- */
-        .features-section { background: white; }
-        .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; }
-        .feature-card {
-            padding: 30px; border-radius: 16px; background: var(--bg-light);
-            border: 1px solid var(--border); transition: 0.3s; text-align: center;
-        }
-        .feature-card:hover { transform: translateY(-5px); border-color: var(--accent); }
-        .feature-icon {
-            width: 60px; height: 60px; background: white; border-radius: 50%;
-            display: flex; align-items: center; justify-content: center;
-            margin: 0 auto 20px; font-size: 1.5rem; color: var(--accent);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-        }
+/* Testimonials */
+.testimonials-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+  margin-top: 48px;
+}
+.testimonial-card {
+  background: white;
+  padding: 28px;
+  border-radius: 24px;
+  border: 1px solid var(--gray-200);
+  transition: all 0.3s;
+}
+.testimonial-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+}
+.stars {
+  color: var(--accent);
+  margin-bottom: 16px;
+  font-size: 13px;
+  letter-spacing: 3px;
+}
+.testimonial-text {
+  font-size: 14px;
+  color: var(--gray-700);
+  line-height: 1.65;
+  margin-bottom: 22px;
+  font-style: italic;
+}
+.author {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.author-avatar {
+  width: 44px;
+  height: 44px;
+  background: linear-gradient(135deg, var(--primary), var(--primary-light));
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  color: white;
+}
+.author-name {
+  font-weight: 700;
+  font-size: 14px;
+}
+.author-role {
+  font-size: 11px;
+  color: var(--gray-500);
+}
 
-        /* --- STATS --- */
-        .stats-section { background: var(--primary); color: white; padding: 60px 0; }
-        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 30px; text-align: center; }
-        .stat-item h3 { font-size: 2.5rem; color: var(--accent); margin-bottom: 5px; font-weight: 800; }
-        .stat-item p { font-size: 0.9rem; opacity: 0.8; }
+/* FAQ */
+.faq-grid {
+  max-width: 800px;
+  margin: 48px auto 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.faq-item {
+  background: white;
+  border: 1px solid var(--gray-200);
+  border-radius: 18px;
+  overflow: hidden;
+}
+.faq-question {
+  padding: 18px 22px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 15px;
+}
+.faq-icon {
+  width: 28px;
+  height: 28px;
+  border-radius: 10px;
+  background: var(--gray-100);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s;
+  font-size: 18px;
+}
+.faq-item.open .faq-icon {
+  background: var(--primary);
+  color: white;
+  transform: rotate(45deg);
+}
+.faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease;
+  padding: 0 22px;
+}
+.faq-item.open .faq-answer {
+  max-height: 200px;
+  padding: 0 22px 20px;
+}
+.faq-answer p {
+  color: var(--gray-600);
+  line-height: 1.6;
+  font-size: 14px;
+}
 
-        /* --- PRODUCTS --- */
-        .filter-container {
-            display: flex; gap: 10px; overflow-x: auto; padding-bottom: 20px;
-            margin-bottom: 30px; scrollbar-width: none;
-        }
-        .filter-container::-webkit-scrollbar { display: none; }
-        
-        .filter-btn {
-            padding: 8px 20px; border: 1px solid var(--border); border-radius: 30px;
-            background: white; white-space: nowrap; cursor: pointer; font-weight: 600;
-            transition: 0.3s;
-        }
-        .filter-btn.active, .filter-btn:hover { background: var(--primary); color: white; border-color: var(--primary); }
+/* Contact */
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  margin-top: 48px;
+}
+.contact-card {
+  display: flex;
+  gap: 16px;
+  padding: 18px;
+  background: white;
+  border: 1px solid var(--gray-200);
+  border-radius: 20px;
+  margin-bottom: 18px;
+}
+.contact-icon {
+  width: 48px;
+  height: 48px;
+  background: rgba(30,74,118,0.08);
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+}
+.contact-label {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--gray-500);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+.contact-value {
+  font-weight: 700;
+  font-size: 15px;
+  margin-top: 4px;
+}
+.form-container {
+  background: white;
+  padding: 36px;
+  border-radius: 28px;
+  border: 1px solid var(--gray-200);
+}
+.form-group {
+  margin-bottom: 18px;
+}
+.form-input, .form-select, .form-textarea {
+  width: 100%;
+  padding: 14px 18px;
+  border: 1.5px solid var(--gray-200);
+  border-radius: 14px;
+  font-family: inherit;
+  font-size: 14px;
+  transition: all 0.2s;
+}
+.form-input:focus, .form-select:focus, .form-textarea:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(30,74,118,0.1);
+}
+.form-textarea {
+  resize: vertical;
+  min-height: 110px;
+}
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
 
-        .product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 30px; }
-        .product-card {
-            background: white; border-radius: 16px; overflow: hidden;
-            border: 1px solid var(--border); transition: 0.3s;
-        }
-        .product-card:hover { transform: translateY(-5px); box-shadow: var(--shadow); }
-        .p-img-wrap { height: 280px; overflow: hidden; background: #f1f5f9; }
-        .p-img-wrap img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
-        .product-card:hover img { transform: scale(1.1); }
-        .p-info { padding: 20px; }
-        .p-cat { font-size: 0.75rem; color: var(--accent); font-weight: 700; text-transform: uppercase; }
-        .p-title { font-size: 1.2rem; margin: 5px 0 15px; }
-        .p-btn { width: 100%; padding: 10px; background: var(--bg-light); border: none; border-radius: 8px; font-weight: 600; cursor: pointer; transition: 0.3s; }
-        .p-btn:hover { background: var(--primary); color: white; }
+/* Bulk Banner */
+.bulk-banner {
+  background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+  border-radius: 32px;
+  padding: 56px 32px;
+  text-align: center;
+  color: white;
+  margin: 40px 0;
+}
+.bulk-banner h2 {
+  font-size: 32px;
+  margin-bottom: 14px;
+}
+.bulk-banner p {
+  opacity: 0.9;
+  margin-bottom: 28px;
+}
 
-        /* --- CONTACT --- */
-        .contact-wrapper {
-            display: grid; grid-template-columns: 1fr; border-radius: 20px;
-            overflow: hidden; box-shadow: var(--shadow);
-        }
-        @media(min-width: 900px) { .contact-wrapper { grid-template-columns: 1fr 1.5fr; } }
-        
-        .contact-info { background: var(--primary); color: white; padding: 40px; }
-        .contact-form { background: white; padding: 40px; }
-        
-        .form-group { margin-bottom: 20px; }
-        .form-control {
-            width: 100%; padding: 14px; border: 1px solid var(--border);
-            border-radius: 10px; font-family: inherit; background: var(--bg-light);
-        }
-        .form-control:focus { outline: none; border-color: var(--accent); background: white; }
+/* Newsletter */
+.newsletter {
+  background: var(--gray-100);
+  border-radius: 32px;
+  padding: 56px 32px;
+  text-align: center;
+}
+.newsletter-input-group {
+  display: flex;
+  gap: 12px;
+  max-width: 500px;
+  margin: 32px auto 0;
+}
+.newsletter-input {
+  flex: 1;
+  padding: 14px 22px;
+  border-radius: 60px;
+  border: 1px solid var(--gray-300);
+  font-size: 14px;
+}
 
-        /* --- FOOTER --- */
-        footer { background: #020617; color: #94a3b8; padding: 60px 0 20px; font-size: 0.9rem; }
-        .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px; margin-bottom: 40px; }
-        .footer-logo { color: white; font-size: 1.4rem; font-weight: 800; margin-bottom: 20px; display: block; }
-        .footer-links li { margin-bottom: 12px; }
-        .footer-links a:hover { color: white; }
-        .copyright { text-align: center; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.1); }
+/* Footer */
+.footer {
+  background: var(--gray-900);
+  color: var(--gray-400);
+  padding: 60px 0 30px;
+  margin-top: 80px;
+}
+.footer-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1.5fr;
+  gap: 40px;
+  margin-bottom: 48px;
+}
+.footer-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+.footer-logo-icon {
+  width: 40px;
+  height: 40px;
+  background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+}
+.footer-logo-text {
+  font-size: 18px;
+  font-weight: 700;
+  color: white;
+}
+.footer h4 {
+  color: white;
+  font-size: 16px;
+  margin-bottom: 18px;
+}
+.footer-links {
+  list-style: none;
+}
+.footer-links li {
+  margin-bottom: 10px;
+}
+.footer-links a {
+  color: var(--gray-400);
+  text-decoration: none;
+  transition: color 0.2s;
+  font-size: 13px;
+}
+.footer-links a:hover {
+  color: var(--accent);
+}
+.social-links {
+  display: flex;
+  gap: 10px;
+  margin-top: 16px;
+}
+.social-link {
+  width: 36px;
+  height: 36px;
+  background: rgba(255,255,255,0.08);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+  text-decoration: none;
+  color: var(--gray-400);
+  font-size: 16px;
+}
+.social-link:hover {
+  background: var(--accent);
+  color: white;
+  transform: translateY(-3px);
+}
+.footer-bottom {
+  border-top: 1px solid rgba(255,255,255,0.08);
+  padding-top: 28px;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+  font-size: 12px;
+}
+.designer {
+  color: var(--accent);
+  font-weight: 600;
+}
 
-        /* --- WHATSAPP FLOAT --- */
-        .whatsapp-float {
-            position: fixed; bottom: 25px; right: 25px;
-            background: #25d366; color: white;
-            width: 60px; height: 60px; border-radius: 50%;
-            display: flex; align-items: center; justify-content: center;
-            font-size: 30px; box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-            z-index: 999; transition: 0.3s;
-        }
-        .whatsapp-float:hover { transform: scale(1.1); }
+/* Floating WhatsApp */
+.float-wa {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  background: #25D366;
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  box-shadow: 0 8px 24px rgba(37,211,102,0.3);
+  transition: all 0.3s;
+  z-index: 500;
+  text-decoration: none;
+  color: white;
+}
+.float-wa:hover {
+  transform: scale(1.1);
+  box-shadow: 0 12px 32px rgba(37,211,102,0.4);
+}
 
-        /* --- RESPONSIVE FIXES --- */
-        @media (min-width: 900px) {
-            .mobile-toggle { display: none; }
-            .desktop-menu { display: flex; }
-            .hero-title { font-size: 4rem; }
-        }
+/* Modal */
+.modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.7);
+  backdrop-filter: blur(8px);
+  z-index: 10000;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+.modal.open {
+  display: flex;
+}
+.modal-content {
+  background: white;
+  max-width: 480px;
+  width: 100%;
+  border-radius: 32px;
+  padding: 32px;
+  position: relative;
+}
+.modal-close {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  background: var(--gray-100);
+  border: none;
+  width: 36px;
+  height: 36px;
+  border-radius: 12px;
+  cursor: pointer;
+  font-size: 18px;
+}
 
-        @media (max-width: 899px) {
-            .hero-grid { grid-template-columns: 1fr; text-align: center; gap: 40px; }
-            .hero-desc { margin: 0 auto 30px; }
-            .hero-btns { justify-content: center; display: flex; gap: 15px; }
-            .hero-img-box { order: -1; max-width: 90%; margin: 0 auto; }
-            
-            .hero-title { font-size: 2.5rem; }
-            .section-padding { padding: 50px 0; }
-        }
+/* Animation Classes */
+.fade-up {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.7s ease;
+}
+.fade-up.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
 
-        @media (max-width: 480px) {
-            .hero-title { font-size: 2rem; }
-            .btn { width: 100%; }
-            .stat-item h3 { font-size: 2rem; }
-        }
-    </style>
+/* Responsive */
+@media (max-width: 1024px) {
+  .hero-grid { grid-template-columns: 1fr; gap: 40px; }
+  .gallery-grid { grid-template-columns: repeat(3, 1fr); }
+  .testimonials-grid { grid-template-columns: repeat(2, 1fr); }
+  .contact-grid { grid-template-columns: 1fr; }
+  .footer-grid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 768px) {
+  .navbar { padding: 0 5%; height: 70px; }
+  .nav-links { display: none; }
+  .hamburger { display: flex; }
+  .mobile-menu.open { display: flex; }
+  .hero-stats { grid-template-columns: repeat(2, 1fr); }
+  .hero-buttons { flex-direction: column; align-items: stretch; }
+  .btn-primary, .btn-outline { justify-content: center; }
+  .gallery-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+  .testimonials-grid { grid-template-columns: 1fr; }
+  .bulk-banner { padding: 40px 20px; }
+  .bulk-banner h2 { font-size: 26px; }
+  .newsletter { padding: 40px 20px; }
+  .newsletter-input-group { flex-direction: column; }
+  .form-row { grid-template-columns: 1fr; }
+  .container { padding: 0 5%; }
+  .section { padding: 60px 0; }
+  .footer-grid { grid-template-columns: 1fr; text-align: center; }
+  .footer-logo { justify-content: center; }
+  .footer-bottom { flex-direction: column; text-align: center; }
+  .social-links { justify-content: center; }
+}
+@media (max-width: 480px) {
+  .stat-number { font-size: 22px; }
+  .product-grid { grid-template-columns: 1fr; }
+  .services-grid { grid-template-columns: 1fr; }
+}
+</style>
 </head>
 <body>
 
-    <!-- Scroll Progress -->
-    <div id="scroll-progress"></div>
+<div class="progress-bar" id="progressBar"></div>
 
-    <!-- Drawer Overlay & Menu -->
-    <div class="drawer-overlay" id="drawerOverlay"></div>
-    <div class="drawer" id="drawer">
-        <div class="drawer-header">
-            <span class="logo-text">Menu</span>
-            <i class="fa-solid fa-xmark close-btn" id="closeDrawer"></i>
+<!-- Navbar -->
+<nav class="navbar" id="navbar">
+  <div class="logo">
+    <div class="logo-icon">SE</div>
+    <div class="logo-text">SHYAM <span>ENTERPRISES</span></div>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#home" class="active">Home</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#products">Products</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#gallery">Gallery</a></li>
+    <li><a href="#testimonials">Reviews</a></li>
+    <li><a href="#contact" class="nav-cta">Contact</a></li>
+  </ul>
+  <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#home">🏠 Home</a>
+  <a href="#about">🏭 About</a>
+  <a href="#products">👕 Products</a>
+  <a href="#services">⚙️ Services</a>
+  <a href="#gallery">🖼️ Gallery</a>
+  <a href="#testimonials">⭐ Reviews</a>
+  <a href="#contact">📞 Contact</a>
+</div>
+
+<!-- Hero -->
+<section id="home" class="hero">
+  <div class="container">
+    <div class="hero-grid">
+      <div class="hero-left fade-up">
+        <div class="hero-badge">✨ Government Approved · GST Registered</div>
+        <h1 class="hero-title">Premium <span class="gradient">Garment</span><br>Manufacturing Company</h1>
+        <p class="hero-desc">Bihar's most trusted garment manufacturer delivering premium quality uniforms, bulk apparel & custom clothing to schools, corporates, wholesalers.</p>
+        <div class="hero-buttons">
+          <a href="#contact" class="btn-primary">📞 Contact Now</a>
+          <a href="#products" class="btn-outline">👕 Explore Products</a>
         </div>
-        <ul class="drawer-links">
-            <li><a href="#home" class="drawer-link">Home</a></li>
-            <li><a href="#about" class="drawer-link">About Us</a></li>
-            <li><a href="#products" class="drawer-link">Products</a></li>
-            <li><a href="#features" class="drawer-link">Why Choose Us</a></li>
-            <li><a href="#contact" class="drawer-link">Contact</a></li>
-        </ul>
-        <div class="drawer-footer">
-            <p style="font-size: 0.9rem; color: var(--text-gray);">Need Help?</p>
-            <p style="font-weight: 700; color: var(--primary);">+91 98765 43210</p>
-            <div class="drawer-socials">
-                <i class="fa-brands fa-facebook"></i>
-                <i class="fa-brands fa-instagram"></i>
-                <i class="fa-brands fa-linkedin"></i>
-            </div>
+        <div class="hero-stats">
+          <div class="stat-card"><div class="stat-number" data-target="1250">0+</div><div class="stat-label">Orders Completed</div></div>
+          <div class="stat-card"><div class="stat-number" data-target="580">0+</div><div class="stat-label">Happy Clients</div></div>
+          <div class="stat-card"><div class="stat-number" data-target="12">0+</div><div class="stat-label">Categories</div></div>
+          <div class="stat-card"><div class="stat-number" data-target="8">0+</div><div class="stat-label">Years Experience</div></div>
         </div>
+      </div>
+      <div class="hero-image fade-up">
+        <div class="hero-card">
+          <div class="hero-img-placeholder">
+            <div class="hero-img-icon">👔</div>
+            <div class="hero-img-text">Premium Garment Manufacturing</div>
+          </div>
+          <div class="hero-tag"><div class="tag-dot"></div><div><strong>Active Production</strong><br><span style="font-size:12px">Patna, Bihar</span></div></div>
+        </div>
+      </div>
     </div>
+  </div>
+</section>
 
-    <!-- Navbar -->
-    <nav class="navbar">
-        <div class="container nav-inner">
-            <div style="display: flex; align-items: center;">
-                <!-- Left Toggle Button -->
-                <div class="mobile-toggle" id="openDrawer">
-                    <i class="fa-solid fa-bars-staggered"></i>
-                </div>
-                
-                <a href="#" class="logo-container">
-                    <!-- LOGO IMAGE HERE -->
-                    <img src="image.png" alt="Logo" class="logo-img" onerror="this.style.display='none'; document.querySelector('.logo-text').style.display='block';">
-                    <span class="logo-text" style="display:none;">SHYAM ENTERPRISES</span> 
-                </a>
-            </div>
+<!-- Marquee -->
+<div class="marquee"><div class="marquee-track" id="marqueeTrack"></div></div>
 
-            <!-- Desktop Menu -->
-            <ul class="desktop-menu">
-                <li><a href="#home" class="desktop-link">Home</a></li>
-                <li><a href="#about" class="desktop-link">About</a></li>
-                <li><a href="#products" class="desktop-link">Products</a></li>
-                <li><a href="#contact" class="desktop-link">Contact</a></li>
-                <li><a href="#contact" class="btn btn-primary" style="padding: 8px 20px; font-size: 0.9rem;">Get Quote</a></li>
-            </ul>
-        </div>
-    </nav>
+<!-- About -->
+<section id="about" class="section">
+  <div class="container">
+    <div class="hero-grid" style="gap:50px">
+      <div class="fade-up"><div class="hero-card"><div class="hero-img-placeholder" style="height:380px"><div class="hero-img-icon">🏭</div><div class="hero-img-text">Factory & Production Unit<br>Patna, Bihar</div></div></div></div>
+      <div class="fade-up"><div class="section-label">About Us</div><h2 class="section-title">Bihar's Premier <span>Garment Manufacturer</span></h2><p class="section-sub" style="max-width:100%">Shyam Enterprises is a government approved proprietary garment manufacturing business founded by <strong>Radheshyam Kumar</strong>. We specialize in high quality bulk production for schools, corporates, wholesalers and retail shops across India.</p><div style="margin:24px 0;padding:16px;background:rgba(212,161,62,0.08);border-radius:20px"><span style="font-weight:700">✓ GST Registered</span> &nbsp;&nbsp; <span style="font-weight:700">✓ Government Approved</span> &nbsp;&nbsp; <span style="font-weight:700">✓ ISO Quality</span></div><div style="display:flex;gap:16px;align-items:center;padding:20px;background:white;border:1px solid var(--gray-200);border-radius:20px"><div style="width:50px;height:50px;background:linear-gradient(135deg,var(--primary),var(--accent));border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;color:white">RK</div><div><div style="font-weight:800">Radheshyam Kumar</div><div style="color:var(--gray-600)">Owner & Founder · Shyam Enterprises</div></div></div></div>
+    </div>
+  </div>
+</section>
 
-    <!-- Hero Section -->
-    <section id="home" class="hero">
-        <div class="container hero-grid">
-            <div class="hero-content">
-                <span class="hero-tag"><i class="fa-solid fa-check-circle"></i> Govt. Approved Business</span>
-                <h1 class="hero-title">Premium Garment <br><span class="serif">Manufacturing</span> Unit</h1>
-                <p class="hero-desc">We craft high-quality uniforms, corporate apparel, and custom garments for retail, wholesale, and government sectors.</p>
-                <div class="hero-btns">
-                    <a href="#contact" class="btn btn-primary">Get Quote <i class="fa-solid fa-arrow-right"></i></a>
-                    <a href="#products" class="btn btn-outline">View Catalog</a>
-                </div>
-            </div>
-            <div class="hero-img-box">
-                <img src="https://images.unsplash.com/photo-1558769132-cb1aea458c5e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Garment Factory" class="hero-img">
-            </div>
-        </div>
-    </section>
+<!-- Products -->
+<section id="products" class="section" style="background:var(--gray-50)">
+  <div class="container">
+    <div class="section-label">Our Collection</div>
+    <h2 class="section-title">Premium <span>Garment Range</span></h2>
+    <div class="filter-bar" id="filterBar"></div>
+    <div class="product-grid" id="productGrid"></div>
+  </div>
+</section>
 
-    <!-- Why Choose Us (NEW) -->
-    <section id="features" class="section-padding features-section">
-        <div class="container">
-            <div style="text-align: center; margin-bottom: 50px;">
-                <span style="color: var(--accent); font-weight: 700;">WHY CHOOSE US</span>
-                <h2 style="font-size: 2.2rem;">The Shyam Advantage</h2>
-            </div>
-            <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon"><i class="fa-solid fa-medal"></i></div>
-                    <h3>Premium Quality</h3>
-                    <p style="color: var(--text-gray); font-size: 0.9rem; margin-top: 10px;">Strict quality checks at every stage of manufacturing.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon"><i class="fa-solid fa-clock"></i></div>
-                    <h3>On-Time Delivery</h3>
-                    <p style="color: var(--text-gray); font-size: 0.9rem; margin-top: 10px;">We respect deadlines. Guaranteed timely delivery.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon"><i class="fa-solid fa-tags"></i></div>
-                    <h3>Bulk Pricing</h3>
-                    <p style="color: var(--text-gray); font-size: 0.9rem; margin-top: 10px;">Competitive factory rates for bulk orders.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon"><i class="fa-solid fa-file-invoice"></i></div>
-                    <h3>GST Billled</h3>
-                    <p style="color: var(--text-gray); font-size: 0.9rem; margin-top: 10px;">Fully compliant government approved business.</p>
-                </div>
-            </div>
-        </div>
-    </section>
+<!-- Services -->
+<section id="services" class="section">
+  <div class="container">
+    <div class="section-label">What We Offer</div>
+    <h2 class="section-title">End-to-End <span>Manufacturing Services</span></h2>
+    <div class="services-grid" id="servicesGrid"></div>
+  </div>
+</section>
 
-    <!-- Stats Section -->
-    <section class="stats-section">
-        <div class="container stats-grid">
-            <div class="stat-item">
-                <h3 data-target="15000">0</h3>
-                <p>Orders Done</p>
-            </div>
-            <div class="stat-item">
-                <h3 data-target="500">0</h3>
-                <p>Happy Clients</p>
-            </div>
-            <div class="stat-item">
-                <h3 data-target="100">0</h3>
-                <p>% Quality</p>
-            </div>
-            <div class="stat-item">
-                <h3 data-target="10">0</h3>
-                <p>Years Exp.</p>
-            </div>
-        </div>
-    </section>
+<!-- Gallery -->
+<section id="gallery" class="section" style="background:var(--gray-50)">
+  <div class="container">
+    <div class="section-label">Gallery</div>
+    <h2 class="section-title">Behind <span>The Seams</span></h2>
+    <div class="gallery-grid" id="galleryGrid"></div>
+  </div>
+</section>
 
-    <!-- Products Section -->
-    <section id="products" class="section-padding">
-        <div class="container">
-            <div style="text-align: center; margin-bottom: 40px;">
-                <span style="color: var(--accent); font-weight: 700; text-transform: uppercase;">Our Collection</span>
-                <h2 style="font-size: 2.2rem; margin-top: 10px;">Premium Products</h2>
-            </div>
+<!-- Testimonials -->
+<section id="testimonials" class="section">
+  <div class="container">
+    <div class="section-label">Testimonials</div>
+    <h2 class="section-title">What Our <span>Clients Say</span></h2>
+    <div class="testimonials-grid" id="testimonialsGrid"></div>
+  </div>
+</section>
 
-            <!-- Filters -->
-            <div class="filter-container">
-                <button class="filter-btn active" data-filter="all">All</button>
-                <button class="filter-btn" data-filter="uniform">Uniforms</button>
-                <button class="filter-btn" data-filter="corporate">Corporate</button>
-                <button class="filter-btn" data-filter="casual">Casual</button>
-            </div>
+<!-- Bulk Banner -->
+<div class="container"><div class="bulk-banner fade-up"><h2>📦 Bulk Order Special Pricing</h2><p>Order 500+ pieces and get exclusive manufacturer discounts. Contact us for a custom quote.</p><a href="#contact" class="btn-primary" style="background:white;color:var(--primary)">Request Quote →</a></div></div>
 
-            <div class="product-grid">
-                <!-- Product 1 -->
-                <div class="product-card" data-category="uniform">
-                    <div class="p-img-wrap">
-                        <img src="https://images.unsplash.com/photo-1596755094514-f87e34085b2c?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="School Uniform">
-                    </div>
-                    <div class="p-info">
-                        <span class="p-cat">Education</span>
-                        <h3 class="p-title">School Uniforms</h3>
-                        <button class="p-btn" onclick="scrollToContact('School Uniforms')">Inquire Now</button>
-                    </div>
-                </div>
+<!-- FAQ -->
+<section id="faq" class="section">
+  <div class="container">
+    <div class="section-label">FAQ</div>
+    <h2 class="section-title">Frequently Asked <span>Questions</span></h2>
+    <div class="faq-grid" id="faqGrid"></div>
+  </div>
+</section>
 
-                <!-- Product 2 -->
-                <div class="product-card" data-category="corporate">
-                    <div class="p-img-wrap">
-                        <img src="https://images.unsplash.com/photo-1598033129183-c4f50c736f10?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Formal Shirt">
-                    </div>
-                    <div class="p-info">
-                        <span class="p-cat">Business</span>
-                        <h3 class="p-title">Formal Shirts</h3>
-                        <button class="p-btn" onclick="scrollToContact('Formal Shirts')">Inquire Now</button>
-                    </div>
-                </div>
+<!-- Contact -->
+<section id="contact" class="section" style="background:var(--gray-50)">
+  <div class="container">
+    <div class="section-label">Get In Touch</div>
+    <h2 class="section-title">Let's Discuss <span>Your Order</span></h2>
+    <div class="contact-grid">
+      <div class="fade-up">
+        <div class="contact-card"><div class="contact-icon">📞</div><div><div class="contact-label">Phone / WhatsApp</div><div class="contact-value">+91 98765 43210</div></div></div>
+        <div class="contact-card"><div class="contact-icon">📧</div><div><div class="contact-label">Email</div><div class="contact-value">info@shyamenterprises.in</div></div></div>
+        <div class="contact-card"><div class="contact-icon">📍</div><div><div class="contact-label">Factory Address</div><div class="contact-value">Patna, Bihar - 800001</div></div></div>
+        <div class="contact-card"><div class="contact-icon">✅</div><div><div class="contact-label">GST Number</div><div class="contact-value">10ABCDE1234F1Z</div></div></div>
+      </div>
+      <div class="form-container fade-up">
+        <h3 style="font-size:24px;margin-bottom:24px">Send Inquiry</h3>
+        <div class="form-row"><div class="form-group"><input type="text" class="form-input" placeholder="Full Name *" id="inpName"></div><div class="form-group"><input type="tel" class="form-input" placeholder="Phone *" id="inpPhone"></div></div>
+        <div class="form-group"><input type="email" class="form-input" placeholder="Email" id="inpEmail"></div>
+        <div class="form-row"><div class="form-group"><select class="form-select" id="inpProduct"><option>Select Product</option><option>Formal Shirt</option><option>Trouser / Pant</option><option>T-Shirt</option><option>School Uniform</option><option>Corporate Uniform</option><option>Hoodie / Jacket</option></select></div><div class="form-group"><input type="text" class="form-input" placeholder="Quantity" id="inpQty"></div></div>
+        <div class="form-group"><textarea class="form-textarea" placeholder="Message / Requirements" id="inpMsg"></textarea></div>
+        <button class="btn-primary" style="width:100%;justify-content:center" onclick="sendInquiry()">Send Inquiry →</button>
+      </div>
+    </div>
+  </div>
+</section>
 
-                <!-- Product 3 -->
-                <div class="product-card" data-category="casual">
-                    <div class="p-img-wrap">
-                        <img src="https://images.unsplash.com/photo-1556905055-8f358a7a47b2?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="T-Shirt">
-                    </div>
-                    <div class="p-info">
-                        <span class="p-cat">Casual</span>
-                        <h3 class="p-title">Premium T-Shirts</h3>
-                        <button class="p-btn" onclick="scrollToContact('T-Shirts')">Inquire Now</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+<!-- Newsletter -->
+<div class="container"><div class="newsletter fade-up"><h3 style="font-size:26px;font-weight:800">Get Updates & Offers</h3><p style="color:var(--gray-600);margin-top:8px">Subscribe for new collection alerts and bulk order discounts</p><div class="newsletter-input-group"><input type="email" class="newsletter-input" placeholder="Your email address" id="newsEmail"><button class="btn-primary" onclick="subscribeNews()">Subscribe</button></div></div></div>
 
-    <!-- Contact Section -->
-    <section id="contact" class="section-padding" style="background: var(--bg-light);">
-        <div class="container">
-            <div style="text-align: center; margin-bottom: 50px;">
-                <h2 style="font-size: 2.2rem;">Start Your Order</h2>
-                <p style="color: var(--text-gray);">Get in touch with Mr. Radheshyam Kumar directly.</p>
-            </div>
+<!-- Footer -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div><div class="footer-logo"><div class="footer-logo-icon">SE</div><div class="footer-logo-text">SHYAM ENTERPRISES</div></div><p style="margin-top:16px;font-size:13px">Government approved premium garment manufacturer serving schools, corporates, wholesalers across India.</p><div class="social-links"><a href="#" class="social-link">📘</a><a href="#" class="social-link">📸</a><a href="#" class="social-link">💬</a></div></div>
+      <div><h4>Quick Links</h4><ul class="footer-links"><li><a href="#home">Home</a></li><li><a href="#about">About</a></li><li><a href="#products">Products</a></li><li><a href="#services">Services</a></li><li><a href="#contact">Contact</a></li></ul></div>
+      <div><h4>Products</h4><ul class="footer-links"><li><a href="#products">Shirts & Pants</a></li><li><a href="#products">School Uniforms</a></li><li><a href="#products">T-Shirts</a></li><li><a href="#products">Hoodies & Jackets</a></li><li><a href="#products">Custom Garments</a></li></ul></div>
+      <div><h4>Contact Info</h4><ul class="footer-links"><li>📞 +91 98765 43210</li><li>✉️ info@shyamenterprises.in</li><li>📍 Patna, Bihar</li><li>✅ GST: 10ABCDE1234F1Z</li><li>👤 Owner: Radheshyam Kumar</li></ul></div>
+    </div>
+    <div class="footer-bottom"><div>© 2024 Shyam Enterprises. All rights reserved.</div><div>Designed by <span class="designer">Avinash Kumar</span></div></div>
+  </div>
+</footer>
 
-            <div class="contact-wrapper">
-                <div class="contact-info">
-                    <h3 style="color: white; margin-bottom: 20px;">Contact Info</h3>
-                    <div style="margin-bottom: 20px;">
-                        <i class="fa-solid fa-phone" style="margin-right: 10px;"></i> +91 98765 43210
-                    </div>
-                    <div style="margin-bottom: 20px;">
-                        <i class="fa-solid fa-envelope" style="margin-right: 10px;"></i> contact@shyamenterprises.com
-                    </div>
-                    <div style="margin-bottom: 20px;">
-                        <i class="fa-solid fa-location-dot" style="margin-right: 10px;"></i> Chandigarh, India
-                    </div>
-                </div>
-                <div class="contact-form">
-                    <form id="inquiryForm">
-                        <div class="form-group">
-                            <label style="display:block; margin-bottom:8px; font-weight:600;">Your Name</label>
-                            <input type="text" class="form-control" placeholder="Enter Name" required>
-                        </div>
-                        <div class="form-group">
-                            <label style="display:block; margin-bottom:8px; font-weight:600;">Phone Number</label>
-                            <input type="tel" class="form-control" placeholder="+91..." required>
-                        </div>
-                        <div class="form-group">
-                            <label style="display:block; margin-bottom:8px; font-weight:600;">Product Interest</label>
-                            <select class="form-control" id="productSelect">
-                                <option>General Inquiry</option>
-                                <option>School Uniforms</option>
-                                <option>Corporate Uniforms</option>
-                                <option>T-Shirts / Hoodies</option>
-                            </select>
-                        </div>
-                        <button type="submit" class="btn btn-primary" style="width: 100%;">Send Inquiry</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </section>
+<a href="https://wa.me/919876543210?text=Hello%20Shyam%20Enterprises!%20I%20need%20garment%20manufacturing%20services." target="_blank" class="float-wa">💬</a>
 
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <div class="footer-grid">
-                <div>
-                    <span class="footer-logo">SHYAM ENTERPRISES</span>
-                    <p>Premium garment manufacturing unit delivering quality and trust.</p>
-                </div>
-                <div>
-                    <h4 style="color:white; margin-bottom:15px;">Quick Links</h4>
-                    <ul class="footer-links">
-                        <li><a href="#home">Home</a></li>
-                        <li><a href="#products">Products</a></li>
-                        <li><a href="#contact">Contact</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 style="color:white; margin-bottom:15px;">Legal</h4>
-                    <ul class="footer-links">
-                        <li>Proprietor: Radheshyam Kumar</li>
-                        <li>GST Verified Business</li>
-                    </ul>
-                </div>
-            </div>
-            <div class="copyright">
-                <p>&copy; 2026 Shyam Enterprises. Designed by Avinash Kumar</p>
-            </div>
-        </div>
-    </footer>
+<!-- Modal -->
+<div class="modal" id="productModal"><div class="modal-content"><button class="modal-close" onclick="closeModal()">✕</button><h3 id="modalTitle" style="font-size:22px;margin-bottom:16px">Product Inquiry</h3><input type="text" class="form-input" placeholder="Your Name" id="modalName" style="margin-bottom:12px"><input type="tel" class="form-input" placeholder="Phone" id="modalPhone" style="margin-bottom:12px"><input type="text" class="form-input" placeholder="Quantity" id="modalQty" style="margin-bottom:20px"><button class="btn-primary" style="width:100%" onclick="sendModalInquiry()">Send Inquiry via WhatsApp</button></div></div>
 
-    <!-- WhatsApp Float -->
-    <a href="https://wa.me/919876543210" class="whatsapp-float" target="_blank">
-        <i class="fa-brands fa-whatsapp"></i>
-    </a>
+<script>
+// Product Data
+const products = [
+  { name:"Premium Formal Shirt", category:"casual", desc:"Premium cotton formal shirts with perfect fitting", price:"₹599 - ₹999", emoji:"👔", badge:"POPULAR" },
+  { name:"Classic Trouser / Pant", category:"casual", desc:"Durable cotton-polyester trousers", price:"₹499 - ₹899", emoji:"👖", badge:"BULK" },
+  { name:"Cotton T-Shirt", category:"casual", desc:"Round neck, custom logo printing available", price:"₹299 - ₹449", emoji:"👕", badge:"CUSTOM" },
+  { name:"School Uniform Set", category:"uniform", desc:"Complete uniform sets with logo embroidery", price:"₹899 - ₹1499", emoji:"🏫", badge:"SCHOOL" },
+  { name:"Corporate Uniform", category:"uniform", desc:"Professional uniforms for offices & hotels", price:"₹699 - ₹1299", emoji:"🏢", badge:"BULK" },
+  { name:"Track Pant", category:"sports", desc:"High quality track pants for sports", price:"₹399 - ₹699", emoji:"🏃", badge:"POPULAR" },
+  { name:"Lower / Shorts", category:"sports", desc:"Comfortable cotton lowers", price:"₹249 - ₹399", emoji:"🩳", badge:"" },
+  { name:"Premium Hoodie", category:"winter", desc:"Fleece lined hoodie with zipper", price:"₹1199 - ₹1999", emoji:"🧥", badge:"WINTER" },
+  { name:"Puffer Jacket", category:"winter", desc:"Warm padded jacket for winters", price:"₹1999 - ₹2999", emoji:"🧥", badge:"" },
+  { name:"Custom Garments", category:"custom", desc:"Fully customized as per your design", price:"Custom Quote", emoji:"✂️", badge:"CUSTOM" }
+];
 
-    <!-- JAVASCRIPT -->
-    <script>
-        // 1. Drawer Logic
-        const openDrawer = document.getElementById('openDrawer');
-        const closeDrawer = document.getElementById('closeDrawer');
-        const drawer = document.getElementById('drawer');
-        const overlay = document.getElementById('drawerOverlay');
-        const drawerLinks = document.querySelectorAll('.drawer-link');
+const services = ["Custom Manufacturing","Bulk Production","Uniform Manufacturing","Fabric Selection","Logo Printing","Packaging & Delivery","Government Supply","School Uniform Specialist"];
+const testimonials = [
+  { name:"Arvind Kumar", role:"Principal, New Era School", text:"Delivered 500 school uniforms on time with excellent quality. Highly recommended!", avatar:"AK" },
+  { name:"Ramesh Jaiswal", role:"Owner, Jaiswal Garments", text:"Best wholesale supplier in Patna! Consistent quality and competitive pricing for 3+ years.", avatar:"RJ" },
+  { name:"Priya Sinha", role:"HR Manager, TechCorp", text:"Corporate uniforms with logo printing - outstanding quality and early delivery!", avatar:"PS" }
+];
+const gallery = [{emoji:"🏭",label:"Factory",span:""},{emoji:"🧵",label:"Stitching",span:""},{emoji:"👔",label:"Shirts",span:"wide"},{emoji:"✂️",label:"Cutting",span:"tall"},{emoji:"📦",label:"Packaging",span:""},{emoji:"🏫",label:"Uniforms",span:""},{emoji:"🖨️",label:"Printing",span:""},{emoji:"🧥",label:"Winter Wear",span:""}];
+const faqs = [
+  {q:"What is the minimum order quantity?",a:"For T-shirts: 100 pieces, shirts/pants: 50 pieces, hoodies/jackets: 25 pieces. School uniforms: 100+ sets get special pricing."},
+  {q:"Do you provide custom logo printing?",a:"Yes! Screen printing, DTF printing and embroidery services available for logos and branding."},
+  {q:"How long does delivery take?",a:"7-10 working days for 50-200 pieces. 15-20 days for 500+ pieces. Pan-India shipping available."},
+  {q:"Is GST invoice provided?",a:"Yes, we are GST registered and provide proper tax invoice for all orders."},
+  {q:"Can I get samples before bulk order?",a:"Absolutely! Sample orders available. Sample fee is adjusted against final bulk order."}
+];
 
-        function toggleDrawer() {
-            drawer.classList.toggle('active');
-            overlay.classList.toggle('active');
-        }
+// Render Functions
+function renderProducts(filter="all") {
+  const filtered = filter==="all"?products:products.filter(p=>p.category===filter);
+  document.getElementById("productGrid").innerHTML = filtered.map(p=>`<div class="product-card fade-up"><div class="product-img"><div style="font-size:48px">${p.emoji}</div>${p.badge?`<div class="product-badge">${p.badge}</div>`:""}</div><div class="product-body"><div class="product-cat">${p.category.toUpperCase()}</div><div class="product-name">${p.name}</div><div class="product-desc">${p.desc}</div><div class="product-meta"><span class="product-price">${p.price}</span><button class="product-btn" onclick="openProductModal('${p.name}')">Inquire</button></div></div></div>`).join("");
+  observeFadeUp();
+}
+function renderServices() {
+  const icons = ["✂️","📦","🏫","🧵","🖨️","📫","🏛️","🎓"];
+  document.getElementById("servicesGrid").innerHTML = services.map((s,i)=>`<div class="service-card fade-up"><div class="service-icon">${icons[i]}</div><div class="service-name">${s}</div><div class="service-desc">Premium quality ${s.toLowerCase()} for bulk orders with fast turnaround.</div></div>`).join("");
+}
+function renderTestimonials() {
+  document.getElementById("testimonialsGrid").innerHTML = testimonials.map(t=>`<div class="testimonial-card fade-up"><div class="stars">★★★★★</div><div class="testimonial-text">"${t.text}"</div><div class="author"><div class="author-avatar">${t.avatar}</div><div><div class="author-name">${t.name}</div><div class="author-role">${t.role}</div></div></div></div>`).join("");
+}
+function renderGallery() {
+  document.getElementById("galleryGrid").innerHTML = gallery.map(g=>`<div class="gallery-item ${g.span==='wide'?'gallery-wide':g.span==='tall'?'gallery-tall':''} fade-up"><div style="text-align:center"><div style="font-size:42px">${g.emoji}</div><div style="margin-top:10px;font-weight:500;font-size:12px">${g.label}</div></div></div>`).join("");
+}
+function renderFaq() {
+  document.getElementById("faqGrid").innerHTML = faqs.map((f,i)=>`<div class="faq-item"><div class="faq-question" onclick="toggleFaq(this)">${f.q}<div class="faq-icon">+</div></div><div class="faq-answer"><p>${f.a}</p></div></div>`).join("");
+}
+function renderFilters() {
+  const filters = ["all","casual","uniform","sports","winter","custom"];
+  const labels = ["All","Casual","Uniforms","Sports","Winter","Custom"];
+  document.getElementById("filterBar").innerHTML = filters.map((f,i)=>`<button class="filter-btn ${i===0?'active':''}" data-filter="${f}">${labels[i]}</button>`).join("");
+  document.querySelectorAll(".filter-btn").forEach(btn=>{
+    btn.addEventListener("click",()=>{
+      document.querySelectorAll(".filter-btn").forEach(b=>b.classList.remove("active"));
+      btn.classList.add("active");
+      renderProducts(btn.dataset.filter);
+    });
+  });
+}
+function renderMarquee() {
+  const items = ["Pant & Shirt","School Uniforms","Corporate Uniforms","T-Shirt & Hoodie","Track Pant & Lower","Custom Garments","Government Supply","Bulk Wholesale"];
+  const track = document.getElementById("marqueeTrack");
+  track.innerHTML = [...items, ...items].map(i=>`<div class="marquee-item">⭐ ${i}</div>`).join("");
+}
+function toggleFaq(el) { const item=el.closest('.faq-item'); item.classList.toggle('open'); }
 
-        openDrawer.addEventListener('click', toggleDrawer);
-        closeDrawer.addEventListener('click', toggleDrawer);
-        overlay.addEventListener('click', toggleDrawer);
+// Modal Functions
+function openProductModal(name) {
+  document.getElementById("modalTitle").innerHTML = `Inquiry: ${name}`;
+  document.getElementById("productModal").classList.add("open");
+  document.body.style.overflow = "hidden";
+}
+function closeModal() {
+  document.getElementById("productModal").classList.remove("open");
+  document.body.style.overflow = "";
+}
+function sendModalInquiry() {
+  const name=document.getElementById("modalName").value, phone=document.getElementById("modalPhone").value, qty=document.getElementById("modalQty").value;
+  if(!name||!phone){alert("Please fill name and phone");return;}
+  const msg = encodeURIComponent(`Hello Shyam Enterprises!%0AProduct: ${document.getElementById("modalTitle").innerHTML.replace("Inquiry: ","")}%0AName: ${name}%0APhone: ${phone}%0AQuantity: ${qty||"To be discussed"}%0APlease share pricing details.`);
+  window.open(`https://wa.me/919876543210?text=${msg}`,"_blank");
+  closeModal();
+}
+function sendInquiry() {
+  const name=document.getElementById("inpName").value, phone=document.getElementById("inpPhone").value, product=document.getElementById("inpProduct").value, qty=document.getElementById("inpQty").value, msg=document.getElementById("inpMsg").value;
+  if(!name||!phone){alert("Please fill name and phone");return;}
+  const fullMsg = encodeURIComponent(`New Inquiry from Website:%0AName: ${name}%0APhone: ${phone}%0AProduct: ${product}%0AQuantity: ${qty}%0AMessage: ${msg}`);
+  window.open(`https://wa.me/919876543210?text=${fullMsg}`,"_blank");
+  document.getElementById("inpName").value="";document.getElementById("inpPhone").value="";document.getElementById("inpEmail").value="";document.getElementById("inpProduct").value="Select Product";document.getElementById("inpQty").value="";document.getElementById("inpMsg").value="";
+}
+function subscribeNews() {
+  const email=document.getElementById("newsEmail").value;
+  if(!email||!email.includes("@")){alert("Please enter valid email");return;}
+  alert("✅ Subscribed successfully!");
+  document.getElementById("newsEmail").value="";
+}
 
-        // Close drawer when a link is clicked
-        drawerLinks.forEach(link => {
-            link.addEventListener('click', toggleDrawer);
-        });
+// Scroll Progress & Navbar
+window.addEventListener("scroll",()=>{
+  const scrolled=(window.scrollY/(document.documentElement.scrollHeight-window.innerHeight))*100;
+  document.getElementById("progressBar").style.width=scrolled+"%";
+  document.getElementById("navbar").classList.toggle("scrolled",window.scrollY>60);
+});
 
-        // 2. Scroll Progress Bar
-        window.onscroll = function() {
-            let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-            let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-            let scrolled = (winScroll / height) * 100;
-            document.getElementById("scroll-progress").style.width = scrolled + "%";
-        };
+// Smooth Scroll
+document.querySelectorAll('a[href^="#"]').forEach(a=>{a.addEventListener("click",e=>{const href=a.getAttribute("href");if(href==="#")return;e.preventDefault();document.querySelector(href)?.scrollIntoView({behavior:"smooth"});});});
 
-        // 3. Animated Counters
-        const counters = document.querySelectorAll('.stat-item h3');
-        let hasCounted = false;
+// Mobile Menu
+const hamburger=document.getElementById("hamburger"),mobileMenu=document.getElementById("mobileMenu");
+hamburger.addEventListener("click",()=>{hamburger.classList.toggle("open");mobileMenu.classList.toggle("open");});
+mobileMenu.querySelectorAll("a").forEach(a=>{a.addEventListener("click",()=>{hamburger.classList.remove("open");mobileMenu.classList.remove("open");});});
 
-        window.addEventListener('scroll', () => {
-            const section = document.querySelector('.stats-section');
-            if(section.getBoundingClientRect().top < window.innerHeight && !hasCounted) {
-                counters.forEach(counter => {
-                    const target = +counter.getAttribute('data-target');
-                    const inc = target / 100;
-                    let count = 0;
-                    const update = () => {
-                        count += inc;
-                        if(count < target) { counter.innerText = Math.ceil(count) + "+"; requestAnimationFrame(update); }
-                        else counter.innerText = target + "+";
-                    };
-                    update();
-                });
-                hasCounted = true;
-            }
-        });
+// Intersection Observer
+function observeFadeUp() {
+  const observer=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add("visible");});},{threshold:0.1});
+  document.querySelectorAll(".fade-up").forEach(el=>observer.observe(el));
+}
 
-        // 4. Product Filtering
-        const filterBtns = document.querySelectorAll('.filter-btn');
-        const products = document.querySelectorAll('.product-card');
+// Counter Animation
+const counters=document.querySelectorAll("[data-target]");
+const counterObserver=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){const el=e.target,target=parseInt(el.dataset.target);let curr=0;const update=()=>{curr+=Math.ceil(target/50);if(curr>target)curr=target;el.innerHTML=curr+"+";if(curr<target)requestAnimationFrame(update);};update();counterObserver.unobserve(el);}});},{threshold:0.5});
+counters.forEach(c=>counterObserver.observe(c));
 
-        filterBtns.forEach(btn => {
-            btn.addEventListener('click', () => {
-                filterBtns.forEach(b => b.classList.remove('active'));
-                btn.classList.add('active');
-                const val = btn.getAttribute('data-filter');
-                
-                products.forEach(p => {
-                    if(val === 'all' || p.getAttribute('data-category') === val) {
-                        p.style.display = 'block';
-                    } else {
-                        p.style.display = 'none';
-                    }
-                });
-            });
-        });
+// Active Nav on Scroll
+const sections = document.querySelectorAll("section[id]");
+window.addEventListener("scroll",()=>{
+  let current="";
+  sections.forEach(s=>{const top=s.offsetTop-100;if(window.scrollY>=top)current=s.getAttribute("id");});
+  document.querySelectorAll(".nav-links a").forEach(a=>{a.classList.remove("active");if(a.getAttribute("href")==="#"+current)a.classList.add("active");});
+});
 
-        // 5. Auto Select Product in Form
-        function scrollToContact(productName) {
-            document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
-            const select = document.getElementById('productSelect');
-            if(productName.includes('School')) select.value = 'School Uniforms';
-            else if(productName.includes('Formal')) select.value = 'Corporate Uniforms';
-            else if(productName.includes('T-Shirt')) select.value = 'T-Shirts / Hoodies';
-            else select.value = 'General Inquiry';
-        }
-
-        // 6. Form Submit Animation
-        document.getElementById('inquiryForm').addEventListener('submit', (e) => {
-            e.preventDefault();
-            const btn = e.target.querySelector('button');
-            const originalText = btn.innerText;
-            btn.innerText = 'Sent Successfully!';
-            btn.style.background = '#10b981'; // Green
-            btn.style.borderColor = '#10b981';
-            e.target.reset();
-            setTimeout(() => {
-                btn.innerText = originalText;
-                btn.style.background = '';
-                btn.style.borderColor = '';
-            }, 3000);
-        });
-    </script>
+// Initialize
+renderProducts();
+renderServices();
+renderTestimonials();
+renderGallery();
+renderFaq();
+renderFilters();
+renderMarquee();
+observeFadeUp();
+</script>
 </body>
 </html>

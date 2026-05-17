@@ -79,9 +79,9 @@ body {
   border-bottom: 1px solid rgba(0,0,0,0.06);
 }
 .navbar.scrolled { height: 64px; background: rgba(255,255,255,0.98); box-shadow: var(--shadow-sm); }
-.logo { display: flex; align-items: center; gap: 12px; }
-.logo-icon { width: 42px; height: 42px; background: linear-gradient(135deg, var(--primary), var(--primary-dark)); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 18px; color: white; }
-.logo-icon img { width: 100%; height: 100%; object-fit: cover; border-radius: 12px; }
+.logo { display: flex; align-items: center; gap: 12px; cursor: pointer; }
+.logo-icon { width: 42px; height: 42px; background: linear-gradient(135deg, var(--primary), var(--primary-dark)); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 18px; color: white; overflow: hidden; }
+.logo-icon img { width: 100%; height: 100%; object-fit: cover; }
 .logo-text { font-weight: 800; font-size: 20px; letter-spacing: -0.3px; color: var(--gray-900); }
 .logo-text span { background: linear-gradient(135deg, var(--accent), var(--accent-dark)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
 .nav-links { display: flex; align-items: center; gap: 6px; list-style: none; }
@@ -98,7 +98,7 @@ body {
 .container { max-width: 1280px; margin: 0 auto; padding: 0 5%; }
 .section { padding: 80px 0; }
 .section-label { display: inline-flex; align-items: center; gap: 8px; font-size: 12px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--accent); margin-bottom: 16px; }
-.section-title { font-size: clamp(32px, 5vw, 46px); font-weight: 800; line-height: 1.2; letter-spacing: -0.02em; color: var(--gray-900); }
+.section-title { font-size: clamp(32px, 5vw, 46px); font-weight: 800; line-height: 1.2; letter-spacing: -0.02em; color: var(--gray-900); margin-bottom: 16px; }
 .section-title span { background: linear-gradient(135deg, var(--primary), var(--accent)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
 
 .btn-primary { display: inline-flex; align-items: center; gap: 8px; padding: 14px 32px; background: var(--primary); color: white; font-weight: 600; border-radius: 40px; border: none; cursor: pointer; transition: all 0.3s ease; text-decoration: none; }
@@ -122,7 +122,7 @@ body {
 .hero-img-icon { font-size: 64px; opacity: 0.5; }
 .hero-img-text { font-weight: 600; color: var(--gray-600); }
 
-.certificate-banner { background: linear-gradient(135deg, var(--success), #059669); border-radius: 24px; padding: 30px; margin: 40px 0; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 20px; }
+.certificate-banner { background: linear-gradient(135deg, var(--success), #059669); border-radius: 24px; padding: 30px; margin: 30px 0; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 20px; }
 .certificate-banner h3 { color: white; font-size: 22px; font-weight: 700; }
 .certificate-banner p { color: rgba(255,255,255,0.9); margin-top: 8px; }
 .cert-badge { background: white; padding: 12px 24px; border-radius: 40px; font-weight: 700; color: var(--success); }
@@ -159,7 +159,6 @@ body {
 .form-input:focus, .form-select:focus, .form-textarea:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 3px rgba(30,74,118,0.1); }
 .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
 
-/* Footer - Proper Visible Colors */
 .footer {
   background: #0a1929;
   color: #e2e8f0;
@@ -173,7 +172,8 @@ body {
   margin-bottom: 48px;
 }
 .footer-logo { display: flex; align-items: center; gap: 10px; margin-bottom: 16px; }
-.footer-logo-icon { width: 40px; height: 40px; background: linear-gradient(135deg, var(--accent), var(--accent-dark)); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-weight: 700; color: #0a1929; }
+.footer-logo-icon { width: 40px; height: 40px; background: linear-gradient(135deg, var(--accent), var(--accent-dark)); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-weight: 700; color: #0a1929; overflow: hidden; }
+.footer-logo-icon img { width: 100%; height: 100%; object-fit: cover; }
 .footer-logo-text { font-size: 18px; font-weight: 700; color: white; }
 .footer h4 { color: #f1f5f9; font-size: 16px; font-weight: 600; margin-bottom: 18px; letter-spacing: 0.5px; }
 .footer-links { list-style: none; }
@@ -216,6 +216,8 @@ body {
   .footer-logo { justify-content: center; }
   .social-links { justify-content: center; }
   .certificate-banner { flex-direction: column; text-align: center; }
+  .product-grid { grid-template-columns: 1fr; }
+  .services-grid { grid-template-columns: 1fr; }
 }
 </style>
 </head>
@@ -225,7 +227,7 @@ body {
 
 <nav class="navbar" id="navbar">
   <div class="logo">
-    <div class="logo-icon"><img src="image.png" alt="Logo" onerror="this.src='https://placehold.co/42x42/1e4a76/white?text=SE'; this.onerror=null;"></div>
+    <div class="logo-icon"><img src="image.png" alt="Logo" onerror="this.style.background='linear-gradient(135deg, #1e4a76, #0f3a5e)'; this.innerHTML='SE'; this.onerror=null;"></div>
     <div class="logo-text">SHYAM <span>ENTERPRISES</span></div>
   </div>
   <ul class="nav-links">
@@ -247,6 +249,7 @@ body {
   <a href="#contact">📞 संपर्क</a>
 </div>
 
+<!-- Hero Section -->
 <section id="home" class="hero">
   <div class="container">
     <div class="hero-grid">
@@ -261,7 +264,7 @@ body {
         <div class="hero-stats">
           <div class="stat-card"><div class="stat-number" data-target="1250">0+</div><div class="stat-label">ऑर्डर पूरे</div></div>
           <div class="stat-card"><div class="stat-number" data-target="580">0+</div><div class="stat-label">खुश ग्राहक</div></div>
-          <div class="stat-card"><div class="stat-number" data-target="12">0+</div><div class="stat-label">प्रोडक्ट कैटेगरी</div></div>
+          <div class="stat-card"><div class="stat-number" data-target="15">0+</div><div class="stat-label">प्रोडक्ट कैटेगरी</div></div>
           <div class="stat-card"><div class="stat-number" data-target="2">0+</div><div class="stat-label">वर्ष का अनुभव</div></div>
         </div>
       </div>
@@ -277,6 +280,7 @@ body {
   </div>
 </section>
 
+<!-- About Section -->
 <section id="about" class="section">
   <div class="container">
     <div class="hero-grid" style="gap:50px">
@@ -284,21 +288,22 @@ body {
       <div class="fade-up">
         <div class="section-label">हमारे बारे में</div>
         <h2 class="section-title">बिहार के प्रीमियर <span>गारमेंट निर्माता</span></h2>
-        <p class="section-sub" style="max-width:100%"><strong>SHYAM ENTERPRISES</strong> एक सरकारी मान्यता प्राप्त और उद्यम पंजीकृत (UDYAM-BR-37-0047559) गारमेंट निर्माण कंपनी है। संस्थापक <strong>राधेश्याम कुमार</strong> के नेतृत्व में, हम स्कूलों, कॉर्पोरेट्स, थोक व्यापारियों और खुदरा दुकानों के लिए उच्च गुणवत्ता वाले बल्क उत्पादन में विशेषज्ञ हैं।</p>
+        <p class="section-sub" style="max-width:100%"><strong>SHYAM ENTERPRISES</strong> एक सरकारी मान्यता प्राप्त और उद्यम पंजीकृत गारमेंट निर्माण कंपनी है। संस्थापक <strong>राधेश्याम कुमार</strong> के नेतृत्व में, हम स्कूलों, कॉर्पोरेट्स, थोक व्यापारियों और खुदरा दुकानों के लिए उच्च गुणवत्ता वाले बल्क उत्पादन में विशेषज्ञ हैं।</p>
         <div style="margin:24px 0;padding:16px;background:rgba(212,161,62,0.08);border-radius:20px">
           <span style="font-weight:700">✓ उद्यम पंजीकृत (MSME)</span> &nbsp;&nbsp;
           <span style="font-weight:700">✓ जीएसटी पंजीकृत</span> &nbsp;&nbsp;
           <span style="font-weight:700">✓ सरकारी मान्यता प्राप्त</span>
         </div>
         <div style="display:flex;gap:16px;align-items:center;padding:20px;background:white;border:1px solid var(--gray-200);border-radius:20px">
-          <div style="width:50px;height:50px;background:linear-gradient(135deg,var(--primary),var(--accent));border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;color:white">रा</div>
-          <div><div style="font-weight:800">राधेश्याम कुमार</div><div style="color:var(--gray-600)">मालिक और संस्थापक · SHYAM ENTERPRISES</div></div>
+          <div style="width:50px;height:50px;background:linear-gradient(135deg,var(--primary),var(--accent));border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;color:white;font-size:18px">रा</div>
+          <div><div style="font-weight:800;font-size:16px">राधेश्याम कुमार</div><div style="color:var(--gray-600);font-size:13px">मालिक और संस्थापक · SHYAM ENTERPRISES</div></div>
         </div>
       </div>
     </div>
   </div>
 </section>
 
+<!-- Certificates Section -->
 <section id="certificates" class="section" style="background:var(--gray-50)">
   <div class="container">
     <div class="section-label">सरकारी मान्यता</div>
@@ -318,6 +323,7 @@ body {
   </div>
 </section>
 
+<!-- Products Section - Fixed -->
 <section id="products" class="section">
   <div class="container">
     <div class="section-label">हमारा कलेक्शन</div>
@@ -326,6 +332,7 @@ body {
   </div>
 </section>
 
+<!-- Services Section -->
 <section id="services" class="section" style="background:var(--gray-50)">
   <div class="container">
     <div class="section-label">हमारी सेवाएं</div>
@@ -334,6 +341,7 @@ body {
   </div>
 </section>
 
+<!-- Contact Section -->
 <section id="contact" class="section">
   <div class="container">
     <div class="section-label">संपर्क करें</div>
@@ -357,12 +365,13 @@ body {
   </div>
 </section>
 
+<!-- Footer -->
 <footer class="footer">
   <div class="container">
     <div class="footer-grid">
       <div>
         <div class="footer-logo">
-          <div class="footer-logo-icon"><img src="image.png" alt="Logo" style="width:100%;height:100%;object-fit:cover;border-radius:10px" onerror="this.src='https://placehold.co/40x40/d4a13e/0a1929?text=SE'; this.onerror=null;"></div>
+          <div class="footer-logo-icon"><img src="image.png" alt="Logo" style="width:100%;height:100%;object-fit:cover;border-radius:10px" onerror="this.style.background='linear-gradient(135deg, #d4a13e, #b8892c)'; this.innerHTML='SE'; this.onerror=null;"></div>
           <div class="footer-logo-text">SHYAM ENTERPRISES</div>
         </div>
         <p style="margin-top:16px;font-size:13px;line-height:1.6">सरकारी मान्यता प्राप्त प्रीमियम गारमेंट निर्माता। स्कूल, कॉर्पोरेट, थोक व्यापारियों के लिए गुणवत्तापूर्ण उत्पाद।</p>
@@ -412,6 +421,7 @@ body {
 <div class="modal" id="productModal"><div class="modal-content"><button class="modal-close" onclick="closeModal()">✕</button><h3 id="modalTitle" style="font-size:22px;margin-bottom:16px">प्रोडक्ट जांच</h3><input type="text" class="form-input" placeholder="आपका नाम" id="modalName" style="margin-bottom:12px"><input type="tel" class="form-input" placeholder="मोबाइल नंबर" id="modalPhone" style="margin-bottom:12px"><input type="text" class="form-input" placeholder="मात्रा" id="modalQty" style="margin-bottom:20px"><button class="btn-primary" style="width:100%" onclick="sendModalInquiry()">व्हाट्सएप पर भेजें</button></div></div>
 
 <script>
+// Product Data
 const products = [
   { name:"प्रीमियम फॉर्मल शर्ट", category:"casual", desc:"प्रीमियम कॉटन फॉर्मल शर्ट बेहतरीन फिटिंग के साथ", price:"₹599 - ₹999", emoji:"👔", badge:"POPULAR" },
   { name:"क्लासिक ट्राउजर / पैंट", category:"casual", desc:"टिकाऊ कॉटन-पॉलिएस्टर ट्राउजर", price:"₹499 - ₹899", emoji:"👖", badge:"BULK" },
@@ -424,35 +434,135 @@ const products = [
   { name:"पफर जैकेट", category:"winter", desc:"सर्दियों के लिए गर्म पैडेड जैकेट", price:"₹1999 - ₹2999", emoji:"🧥", badge:"" },
   { name:"कस्टम गारमेंट्स", category:"custom", desc:"आपके डिज़ाइन के अनुसार पूरी तरह कस्टम", price:"कस्टम कोट", emoji:"✂️", badge:"CUSTOM" }
 ];
+
 const services = ["कस्टम मैन्युफैक्चरिंग","बल्क प्रोडक्शन","यूनिफॉर्म मैन्युफैक्चरिंग","फैब्रिक सिलेक्शन","लोगो प्रिंटिंग","पैकेजिंग और डिलीवरी","सरकारी सप्लाई","स्कूल यूनिफॉर्म स्पेशलिस्ट"];
 const icons = ["✂️","📦","🏫","🧵","🖨️","📫","🏛️","🎓"];
 
 function renderProducts() {
   const grid = document.getElementById("productGrid");
-  grid.innerHTML = products.map(p=>`<div class="product-card fade-up"><div class="product-img"><div style="font-size:48px">${p.emoji}</div>${p.badge?`<div class="product-badge">${p.badge}</div>`:""}</div><div class="product-body"><div class="product-cat">${p.category.toUpperCase()}</div><div class="product-name">${p.name}</div><div class="product-desc">${p.desc}</div><div class="product-meta"><span class="product-price">${p.price}</span><button class="product-btn" onclick="openProductModal('${p.name}')">जांच करें</button></div></div></div>`).join("");
+  if(!grid) return;
+  grid.innerHTML = products.map(p => `
+    <div class="product-card fade-up">
+      <div class="product-img">
+        <div style="font-size:48px">${p.emoji}</div>
+        ${p.badge ? `<div class="product-badge">${p.badge}</div>` : ""}
+      </div>
+      <div class="product-body">
+        <div class="product-cat">${p.category.toUpperCase()}</div>
+        <div class="product-name">${p.name}</div>
+        <div class="product-desc">${p.desc}</div>
+        <div class="product-meta">
+          <span class="product-price">${p.price}</span>
+          <button class="product-btn" onclick="openProductModal('${p.name}')">जांच करें</button>
+        </div>
+      </div>
+    </div>
+  `).join("");
+  
+  // Re-apply fade-up observer for new elements
+  document.querySelectorAll(".product-card.fade-up").forEach(el => observer.observe(el));
 }
+
 function renderServices() {
-  document.getElementById("servicesGrid").innerHTML = services.map((s,i)=>`<div class="service-card fade-up"><div class="service-icon">${icons[i]}</div><div class="service-name">${s}</div><div class="service-desc">बल्क ऑर्डर के लिए प्रीमियम गुणवत्ता ${s.toLowerCase()} त्वरित डिलीवरी के साथ।</div></div>`).join("");
+  const grid = document.getElementById("servicesGrid");
+  if(!grid) return;
+  grid.innerHTML = services.map((s,i) => `
+    <div class="service-card fade-up">
+      <div class="service-icon">${icons[i]}</div>
+      <div class="service-name">${s}</div>
+      <div class="service-desc">बल्क ऑर्डर के लिए प्रीमियम गुणवत्ता ${s.toLowerCase()} त्वरित डिलीवरी के साथ।</div>
+    </div>
+  `).join("");
+  document.querySelectorAll(".service-card.fade-up").forEach(el => observer.observe(el));
 }
 
-function openProductModal(name) { document.getElementById("modalTitle").innerHTML = `प्रोडक्ट जांच: ${name}`; document.getElementById("productModal").classList.add("open"); document.body.style.overflow = "hidden"; }
-function closeModal() { document.getElementById("productModal").classList.remove("open"); document.body.style.overflow = ""; }
-function sendModalInquiry() { const name=document.getElementById("modalName").value, phone=document.getElementById("modalPhone").value, qty=document.getElementById("modalQty").value; if(!name||!phone){alert("कृपया नाम और मोबाइल नंबर भरें");return;} const msg = encodeURIComponent(`नमस्ते SHYAM ENTERPRISES!%0Aप्रोडक्ट: ${document.getElementById("modalTitle").innerHTML.replace("प्रोडक्ट जांच: ","")}%0Aनाम: ${name}%0Aमोबाइल: ${phone}%0Aमात्रा: ${qty||"बताई जाएगी"}%0Aकृपया मूल्य जानकारी भेजें।`); window.open(`https://wa.me/918228069790?text=${msg}`,"_blank"); closeModal(); }
-function sendInquiry() { const name=document.getElementById("inpName").value, phone=document.getElementById("inpPhone").value, product=document.getElementById("inpProduct").value, qty=document.getElementById("inpQty").value, msg=document.getElementById("inpMsg").value; if(!name||!phone){alert("कृपया नाम और मोबाइल नंबर भरें");return;} const fullMsg = encodeURIComponent(`नमस्ते SHYAM ENTERPRISES!%0Aनई जांच:%0Aनाम: ${name}%0Aमोबाइल: ${phone}%0Aप्रोडक्ट: ${product}%0Aमात्रा: ${qty}%0Aसंदेश: ${msg}`); window.open(`https://wa.me/918228069790?text=${fullMsg}`,"_blank"); }
+function openProductModal(name) { 
+  document.getElementById("modalTitle").innerHTML = `प्रोडक्ट जांच: ${name}`; 
+  document.getElementById("productModal").classList.add("open"); 
+  document.body.style.overflow = "hidden"; 
+}
+function closeModal() { 
+  document.getElementById("productModal").classList.remove("open"); 
+  document.body.style.overflow = ""; 
+}
+function sendModalInquiry() { 
+  const name=document.getElementById("modalName").value, phone=document.getElementById("modalPhone").value, qty=document.getElementById("modalQty").value; 
+  if(!name||!phone){alert("कृपया नाम और मोबाइल नंबर भरें");return;} 
+  const msg = encodeURIComponent(`नमस्ते SHYAM ENTERPRISES!%0Aप्रोडक्ट: ${document.getElementById("modalTitle").innerHTML.replace("प्रोडक्ट जांच: ","")}%0Aनाम: ${name}%0Aमोबाइल: ${phone}%0Aमात्रा: ${qty||"बताई जाएगी"}%0Aकृपया मूल्य जानकारी भेजें।`); 
+  window.open(`https://wa.me/918228069790?text=${msg}`,"_blank"); 
+  closeModal(); 
+}
+function sendInquiry() { 
+  const name=document.getElementById("inpName").value, phone=document.getElementById("inpPhone").value, product=document.getElementById("inpProduct").value, qty=document.getElementById("inpQty").value, msg=document.getElementById("inpMsg").value; 
+  if(!name||!phone){alert("कृपया नाम और मोबाइल नंबर भरें");return;} 
+  const fullMsg = encodeURIComponent(`नमस्ते SHYAM ENTERPRISES!%0Aनई जांच:%0Aनाम: ${name}%0Aमोबाइल: ${phone}%0Aप्रोडक्ट: ${product}%0Aमात्रा: ${qty}%0Aसंदेश: ${msg}`); 
+  window.open(`https://wa.me/918228069790?text=${fullMsg}`,"_blank"); 
+}
 
-window.addEventListener("scroll",()=>{ const scrolled=(window.scrollY/(document.documentElement.scrollHeight-window.innerHeight))*100; document.getElementById("progressBar").style.width=scrolled+"%"; document.getElementById("navbar").classList.toggle("scrolled",window.scrollY>60); });
-document.querySelectorAll('a[href^="#"]').forEach(a=>{a.addEventListener("click",e=>{const href=a.getAttribute("href");if(href==="#")return;e.preventDefault();document.querySelector(href)?.scrollIntoView({behavior:"smooth"});});});
+// Scroll progress
+window.addEventListener("scroll",()=>{ 
+  const scrolled=(window.scrollY/(document.documentElement.scrollHeight-window.innerHeight))*100; 
+  document.getElementById("progressBar").style.width=scrolled+"%"; 
+  document.getElementById("navbar").classList.toggle("scrolled",window.scrollY>60); 
+});
+
+// Smooth scroll
+document.querySelectorAll('a[href^="#"]').forEach(a=>{
+  a.addEventListener("click",e=>{
+    const href=a.getAttribute("href");
+    if(href==="#")return;
+    e.preventDefault();
+    const target = document.querySelector(href);
+    if(target) target.scrollIntoView({behavior:"smooth"});
+  });
+});
+
+// Mobile menu
 const hamburger=document.getElementById("hamburger"),mobileMenu=document.getElementById("mobileMenu");
 hamburger.addEventListener("click",()=>{hamburger.classList.toggle("open");mobileMenu.classList.toggle("open");});
 mobileMenu.querySelectorAll("a").forEach(a=>{a.addEventListener("click",()=>{hamburger.classList.remove("open");mobileMenu.classList.remove("open");});});
 
-const observer=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add("visible");});},{threshold:0.1});
+// Intersection Observer for fade-up
+const observer = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add("visible");});
+},{threshold:0.1});
 document.querySelectorAll(".fade-up").forEach(el=>observer.observe(el));
 
+// Counter animation
 const counters=document.querySelectorAll("[data-target]");
-const counterObserver=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){const el=e.target,target=parseInt(el.dataset.target);let curr=0;const update=()=>{curr+=Math.ceil(target/50);if(curr>target)curr=target;el.innerHTML=curr+"+";if(curr<target)requestAnimationFrame(update);};update();counterObserver.unobserve(el);}});},{threshold:0.5});
+const counterObserver=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      const el=e.target,target=parseInt(el.dataset.target);
+      let curr=0;
+      const update=()=>{
+        curr+=Math.ceil(target/50);
+        if(curr>target)curr=target;
+        el.innerHTML=curr+"+";
+        if(curr<target)requestAnimationFrame(update);
+      };
+      update();
+      counterObserver.unobserve(el);
+    }
+  });
+},{threshold:0.5});
 counters.forEach(c=>counterObserver.observe(c));
 
+// Active nav link
+const sections = document.querySelectorAll("section[id]");
+window.addEventListener("scroll",()=>{
+  let current="";
+  sections.forEach(s=>{
+    const top=s.offsetTop-100;
+    if(window.scrollY>=top)current=s.getAttribute("id");
+  });
+  document.querySelectorAll(".nav-links a").forEach(a=>{
+    a.classList.remove("active");
+    if(a.getAttribute("href")==="#"+current)a.classList.add("active");
+  });
+});
+
+// Initialize
 renderProducts();
 renderServices();
 </script>

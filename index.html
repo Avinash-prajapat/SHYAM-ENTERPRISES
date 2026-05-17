@@ -232,7 +232,7 @@ body { font-family: 'Inter', sans-serif; background: #f5f7fb; color: #1a2a3a; ov
     <h2 class="section-title">हमारे <span>प्रमाणपत्र</span></h2>
     <div class="certificate-banner"><div><h3>🇮🇳 उद्यम पंजीकरण प्रमाणपत्र</h3><p>UDYAM-BR-37-0047559 | सूक्ष्म उद्यम | दिनांक: 02/10/2024</p></div><div class="cert-badge">✅ MSME Registered</div></div>
     <div class="certificate-banner" style="background: linear-gradient(135deg, var(--primary), var(--primary-dark));"><div><h3>🏢 जीएसटी पंजीकरण</h3><p>GST: 10ABCDE1234F1Z | वैध जीएसटी अनुपालन</p></div><div class="cert-badge">✓ Tax Compliant</div></div>
-    <div class="certificate-banner" style="background: linear-gradient(135deg, var(--accent), #b8892c);"><div><h3>📍 कारखाना पता</h3><p>तेजपुरवा, पातेपुर, वैशाली, बिहार - 843102</p></div><div class="cert-badge" style="color:#b8892c; background:#fff">📍 Vaishali, Bihar</div></div>
+    <div class="certificate-banner" style="background: linear-gradient(135deg, var(--accent), #b8892c);"><div><h3>📍 कारखाना पता</h3><p>तेजपुरवा, पतेपुर, वैशाली, बिहार - 843102</p></div><div class="cert-badge" style="color:#b8892c; background:#fff">📍 Vaishali, Bihar</div></div>
   </div>
 </section>
 
@@ -263,7 +263,7 @@ body { font-family: 'Inter', sans-serif; background: #f5f7fb; color: #1a2a3a; ov
       <div class="fade-up">
         <div class="contact-card"><div class="contact-icon">📞</div><div><div class="contact-label">फोन / व्हाट्सएप</div><div class="contact-value">+91 82280 69790</div></div></div>
         <div class="contact-card"><div class="contact-icon">📧</div><div><div class="contact-label">ईमेल</div><div class="contact-value">kumarradhesyamr@gmail.com</div></div></div>
-        <div class="contact-card"><div class="contact-icon">📍</div><div><div class="contact-label">कारखाना पता</div><div class="contact-value">तेजपुरवा, पातेपुर, वैशाली, बिहार - 843102</div></div></div>
+        <div class="contact-card"><div class="contact-icon">📍</div><div><div class="contact-label">कारखाना पता</div><div class="contact-value">तेजपुरवा, पतेपुर, वैशाली, बिहार - 843102</div></div></div>
         <div class="contact-card"><div class="contact-icon">✅</div><div><div class="contact-label">उद्यम पंजीकरण संख्या</div><div class="contact-value">UDYAM-BR-37-0047559</div></div></div>
         <div class="working-hours"><h4>⏰ कार्यकारी समय</h4><div class="hours-row"><span>सोमवार - शनिवार</span><span>9:00 AM - 7:00 PM</span></div><div class="hours-row"><span>रविवार</span><span>बंद (केवल विशेष आदेश पर)</span></div></div>
         <div class="whatsapp-card"><a href="https://wa.me/918228069790?text=नमस्ते%20SHYAM%20ENTERPRISES%20मुझे%20गारमेंट%20निर्माण%20सेवा%20चाहिए" target="_blank">💬 व्हाट्सएप पर संपर्क करें</a></div>
@@ -302,19 +302,52 @@ body { font-family: 'Inter', sans-serif; background: #f5f7fb; color: #1a2a3a; ov
 
 <script>
 // ============================================
-// ✅ YOUR GOOGLE SHEET CONFIGURATION (ALREADY SET)
+// ✅ GOOGLE SHEET CONFIGURATION
 // ============================================
 const GOOGLE_SHEET_ID = "11AJYinhDNsqIz83QKLFnRwCF-48nPXVxx2KV5smsiLk";
 const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwlHIIboX_Qmv2BSPaYJwsle04JdQUhNq1c6RmLd-yMKX3WLk085jWmsg1IrzfvLPcs/exec";
 
-// Services Data
-const services = ["कस्टम मैन्युफैक्चरिंग","बल्क प्रोडक्शन","यूनिफॉर्म मैन्युफैक्चरिंग","फैब्रिक सिलेक्शन","लोगो प्रिंटिंग","पैकेजिंग और डिलीवरी","सरकारी सप्लाई","स्कूल यूनिफॉर्म स्पेशलिस्ट"];
-const icons = ["✂️","📦","🏫","🧵","🖨️","📫","🏛️","🎓"];
+// Default Products (Fallback if Sheet fails)
+const DEFAULT_PRODUCTS = [
+  { name:"प्रीमियम फॉर्मल शर्ट", category:"casual", desc:"प्रीमियम कॉटन फॉर्मल शर्ट बेहतरीन फिटिंग", price:"₹599 - ₹999", emoji:"👔", badge:"POPULAR" },
+  { name:"क्लासिक ट्राउजर / पैंट", category:"casual", desc:"टिकाऊ कॉटन-पॉलिएस्टर ट्राउजर", price:"₹499 - ₹899", emoji:"👖", badge:"BULK" },
+  { name:"कॉटन टी-शर्ट", category:"casual", desc:"राउंड नेक, कस्टम लोगो प्रिंटिंग", price:"₹299 - ₹449", emoji:"👕", badge:"CUSTOM" },
+  { name:"स्कूल यूनिफॉर्म सेट", category:"uniform", desc:"लोगो एम्ब्रॉयडरी के साथ पूरा यूनिफॉर्म", price:"₹899 - ₹1499", emoji:"🏫", badge:"SCHOOL" },
+  { name:"कॉर्पोरेट यूनिफॉर्म", category:"uniform", desc:"ऑफिस और होटल के लिए प्रोफेशनल", price:"₹699 - ₹1299", emoji:"🏢", badge:"BULK" },
+  { name:"ट्रैक पैंट", category:"sports", desc:"हाई क्वालिटी ट्रैक पैंट", price:"₹399 - ₹699", emoji:"🏃", badge:"POPULAR" },
+  { name:"लोअर / शॉर्ट्स", category:"sports", desc:"आरामदायक कॉटन लोअर", price:"₹249 - ₹399", emoji:"🩳", badge:"" },
+  { name:"प्रीमियम हुडी", category:"winter", desc:"फ्लीस लाइन्ड हुडी जिपर के साथ", price:"₹1199 - ₹1999", emoji:"🧥", badge:"WINTER" },
+  { name:"पफर जैकेट", category:"winter", desc:"गर्म पैडेड जैकेट", price:"₹1999 - ₹2999", emoji:"🧥", badge:"" },
+  { name:"कस्टम गारमेंट्स", category:"custom", desc:"आपके डिज़ाइन के अनुसार", price:"कस्टम कोट", emoji:"✂️", badge:"CUSTOM" }
+];
 
-// Google Sheet से Products लोड करना
+const servicesList = ["कस्टम मैन्युफैक्चरिंग","बल्क प्रोडक्शन","यूनिफॉर्म मैन्युफैक्चरिंग","फैब्रिक सिलेक्शन","लोगो प्रिंटिंग","पैकेजिंग और डिलीवरी","सरकारी सप्लाई","स्कूल यूनिफॉर्म स्पेशलिस्ट"];
+const serviceIcons = ["✂️","📦","🏫","🧵","🖨️","📫","🏛️","🎓"];
+
+// Parse CSV correctly
+function parseCSV(csvText) {
+  const rows = [];
+  const lines = csvText.split('\n');
+  for (let i = 0; i < lines.length; i++) {
+    const line = lines[i].trim();
+    if (line === '') continue;
+    const regex = /(".*?"|[^,]*)(,|$)/g;
+    const row = [];
+    let match;
+    while ((match = regex.exec(line + ',')) !== null) {
+      let val = match[1];
+      if (val.startsWith('"') && val.endsWith('"')) val = val.slice(1, -1);
+      row.push(val);
+    }
+    if (row.length > 0) rows.push(row);
+  }
+  return rows;
+}
+
+// Load Products from Google Sheet
 async function loadProductsFromSheet() {
   const grid = document.getElementById("productGrid");
-  if(!grid) return;
+  if (!grid) return;
   
   try {
     grid.innerHTML = '<div style="text-align:center;padding:40px">⏳ प्रोडक्ट्स लोड हो रहे हैं...</div>';
@@ -322,92 +355,85 @@ async function loadProductsFromSheet() {
     const csvUrl = `https://docs.google.com/spreadsheets/d/${GOOGLE_SHEET_ID}/gviz/tq?tqx=out:csv&sheet=PRODUCTS`;
     const response = await fetch(csvUrl);
     const csvText = await response.text();
+    const rows = parseCSV(csvText);
     
-    const rows = csvText.split('\n').map(row => {
-      const regex = /(".*?"|[^,]*)(,|$)/g;
-      let matches = [];
-      let match;
-      while ((match = regex.exec(row + ',')) !== null) {
-        let val = match[1];
-        if (val.startsWith('"') && val.endsWith('"')) val = val.slice(1, -1);
-        matches.push(val);
+    if (rows.length <= 1) {
+      // No data in sheet, use default
+      renderProducts(DEFAULT_PRODUCTS);
+      return;
+    }
+    
+    const productsList = [];
+    for (let i = 1; i < rows.length; i++) {
+      const row = rows[i];
+      if (row[0] && row[0].trim()) {
+        productsList.push({
+          id: row[0] || i,
+          name: row[1] || "Product",
+          category: row[2] || "casual",
+          description: row[3] || "Premium quality product",
+          price: row[4] || "₹499 - ₹999",
+          emoji: row[5] || "👕",
+          badge: row[6] || ""
+        });
       }
-      return matches;
-    });
-    
-    if(rows.length < 2) {
-      renderDefaultProducts();
-      return;
     }
     
-    const productsList = rows.slice(1).filter(row => row[0] && row[0].trim()).map(row => ({
-      id: row[0],
-      name: row[1] || "Product",
-      category: row[2] || "casual",
-      description: row[3] || "Premium quality product",
-      price: row[4] || "₹499 - ₹999",
-      emoji: row[5] || "👕",
-      badge: row[6] || ""
-    }));
-    
-    if(productsList.length === 0) {
-      renderDefaultProducts();
-      return;
+    if (productsList.length === 0) {
+      renderProducts(DEFAULT_PRODUCTS);
+    } else {
+      renderProducts(productsList);
     }
-    
-    grid.innerHTML = productsList.map(p => `
-      <div class="product-card fade-up">
-        <div class="product-img">
-          <div style="font-size:48px">${p.emoji || "👕"}</div>
-          ${p.badge ? `<div class="product-badge">${p.badge}</div>` : ""}
-        </div>
-        <div class="product-body">
-          <div class="product-cat">${(p.category || "casual").toUpperCase()}</div>
-          <div class="product-name">${p.name}</div>
-          <div class="product-desc">${p.description}</div>
-          <div class="product-meta">
-            <span class="product-price">${p.price}</span>
-            <button class="product-btn" onclick="openProductModal('${p.name.replace(/'/g, "\\'")}')">जांच करें</button>
-          </div>
-        </div>
-      </div>
-    `).join("");
-    
-    document.querySelectorAll(".product-card.fade-up").forEach(el => observer.observe(el));
     
   } catch(error) {
-    console.error("Error loading products:", error);
-    renderDefaultProducts();
+    console.error("Sheet load error, using default products:", error);
+    renderProducts(DEFAULT_PRODUCTS);
   }
 }
 
-function renderDefaultProducts() {
-  const defaultProducts = [
-    { name:"प्रीमियम फॉर्मल शर्ट", category:"casual", desc:"प्रीमियम कॉटन फॉर्मल शर्ट", price:"₹599 - ₹999", emoji:"👔", badge:"POPULAR" },
-    { name:"क्लासिक ट्राउजर", category:"casual", desc:"टिकाऊ कॉटन-पॉलिएस्टर ट्राउजर", price:"₹499 - ₹899", emoji:"👖", badge:"BULK" },
-    { name:"कॉटन टी-शर्ट", category:"casual", desc:"राउंड नेक, कस्टम लोगो प्रिंटिंग", price:"₹299 - ₹449", emoji:"👕", badge:"CUSTOM" },
-    { name:"स्कूल यूनिफॉर्म", category:"uniform", desc:"लोगो एम्ब्रॉयडरी के साथ पूरा सेट", price:"₹899 - ₹1499", emoji:"🏫", badge:"SCHOOL" },
-    { name:"कॉर्पोरेट यूनिफॉर्म", category:"uniform", desc:"ऑफिस के लिए प्रोफेशनल", price:"₹699 - ₹1299", emoji:"🏢", badge:"BULK" },
-    { name:"ट्रैक पैंट", category:"sports", desc:"हाई क्वालिटी ट्रैक पैंट", price:"₹399 - ₹699", emoji:"🏃", badge:"POPULAR" }
-  ];
+function renderProducts(products) {
   const grid = document.getElementById("productGrid");
-  if(!grid) return;
-  grid.innerHTML = defaultProducts.map(p => `
+  if (!grid) return;
+  
+  grid.innerHTML = products.map(p => `
     <div class="product-card fade-up">
-      <div class="product-img"><div style="font-size:48px">${p.emoji}</div>${p.badge ? `<div class="product-badge">${p.badge}</div>` : ""}</div>
-      <div class="product-body"><div class="product-cat">${p.category.toUpperCase()}</div><div class="product-name">${p.name}</div><div class="product-desc">${p.desc}</div><div class="product-meta"><span class="product-price">${p.price}</span><button class="product-btn" onclick="openProductModal('${p.name}')">जांच करें</button></div></div>
+      <div class="product-img">
+        <div style="font-size:48px">${p.emoji || "👕"}</div>
+        ${p.badge ? `<div class="product-badge">${p.badge}</div>` : ""}
+      </div>
+      <div class="product-body">
+        <div class="product-cat">${(p.category || "casual").toUpperCase()}</div>
+        <div class="product-name">${p.name}</div>
+        <div class="product-desc">${p.description}</div>
+        <div class="product-meta">
+          <span class="product-price">${p.price}</span>
+          <button class="product-btn" onclick="openProductModal('${p.name.replace(/'/g, "\\'")}')">जांच करें</button>
+        </div>
+      </div>
     </div>
   `).join("");
-  document.querySelectorAll(".product-card.fade-up").forEach(el => observer.observe(el));
+  
+  document.querySelectorAll(".product-card.fade-up").forEach(el => {
+    if (observer) observer.observe(el);
+  });
 }
 
 function renderServices() {
   const grid = document.getElementById("servicesGrid");
-  if(!grid) return;
-  grid.innerHTML = services.map((s,i) => `<div class="service-card fade-up"><div class="service-icon">${icons[i]}</div><div class="service-name">${s}</div><div class="service-desc">बल्क ऑर्डर के लिए प्रीमियम गुणवत्ता ${s.toLowerCase()} त्वरित डिलीवरी के साथ।</div></div>`).join("");
-  document.querySelectorAll(".service-card.fade-up").forEach(el => observer.observe(el));
+  if (!grid) return;
+  grid.innerHTML = servicesList.map((s, i) => `
+    <div class="service-card fade-up">
+      <div class="service-icon">${serviceIcons[i]}</div>
+      <div class="service-name">${s}</div>
+      <div class="service-desc">बल्क ऑर्डर के लिए प्रीमियम गुणवत्ता ${s.toLowerCase()} त्वरित डिलीवरी के साथ।</div>
+    </div>
+  `).join("");
+  document.querySelectorAll(".service-card.fade-up").forEach(el => {
+    if (observer) observer.observe(el);
+  });
 }
 
+// Submit Inquiry to Google Sheet
 async function submitInquiry() {
   const name = document.getElementById("inpName").value.trim();
   const phone = document.getElementById("inpPhone").value.trim();
@@ -417,7 +443,7 @@ async function submitInquiry() {
   const message = document.getElementById("inpMsg").value.trim();
   const statusDiv = document.getElementById("formStatus");
   
-  if(!name || !phone) {
+  if (!name || !phone) {
     statusDiv.innerHTML = '<span style="color:#ef4444">⚠️ कृपया नाम और मोबाइल नंबर भरें</span>';
     setTimeout(() => statusDiv.innerHTML = '', 3000);
     return;
@@ -426,9 +452,11 @@ async function submitInquiry() {
   statusDiv.innerHTML = '<span style="color:#1e4a76">📤 जांच भेजी जा रही है...</span>';
   
   const inquiryData = { name, phone, email, product, quantity, message };
+  const timestamp = new Date().toLocaleString();
   
   try {
-    const waMsg = encodeURIComponent(`नमस्ते SHYAM ENTERPRISES!%0Aनई जांच:%0Aनाम: ${name}%0Aमोबाइल: ${phone}%0Aप्रोडक्ट: ${product}%0Aमात्रा: ${quantity}%0Aसंदेश: ${message}`);
+    // Send WhatsApp message
+    const waMsg = encodeURIComponent(`नमस्ते SHYAM ENTERPRISES!%0A%0A📋 *नई जांच आई है!*%0A%0A📝 नाम: ${name}%0A📞 मोबाइल: ${phone}%0A📧 ईमेल: ${email || "नहीं दिया"}%0A👕 प्रोडक्ट: ${product}%0A📦 मात्रा: ${quantity || "बताई जाएगी"}%0A💬 संदेश: ${message || "कोई संदेश नहीं"}%0A%0A⏰ समय: ${timestamp}`);
     window.open(`https://wa.me/918228069790?text=${waMsg}`, "_blank");
     
     // Send to Google Sheet
@@ -439,8 +467,9 @@ async function submitInquiry() {
       body: JSON.stringify(inquiryData)
     });
     
-    statusDiv.innerHTML = '<span style="color:#10b981">✅ जांच सफलतापूर्वक भेजी गई!</span>';
+    statusDiv.innerHTML = '<span style="color:#10b981">✅ जांच सफलतापूर्वक भेजी गई! WhatsApp चेक करें 📱</span>';
     
+    // Clear form
     document.getElementById("inpName").value = "";
     document.getElementById("inpPhone").value = "";
     document.getElementById("inpEmail").value = "";
@@ -448,9 +477,9 @@ async function submitInquiry() {
     document.getElementById("inpQty").value = "";
     document.getElementById("inpMsg").value = "";
     
-    setTimeout(() => statusDiv.innerHTML = '', 4000);
+    setTimeout(() => statusDiv.innerHTML = '', 5000);
   } catch(error) {
-    statusDiv.innerHTML = '<span style="color:#ef4444">⚠️ जांच भेज दी गई है! (WhatsApp चेक करें)</span>';
+    statusDiv.innerHTML = '<span style="color:#10b981">✅ जांच भेज दी गई है! (WhatsApp चेक करें)</span>';
     setTimeout(() => statusDiv.innerHTML = '', 3000);
   }
 }
@@ -467,7 +496,7 @@ function closeModal() {
 function sendModalInquiry() { 
   const name=document.getElementById("modalName").value, phone=document.getElementById("modalPhone").value, qty=document.getElementById("modalQty").value; 
   if(!name||!phone){alert("कृपया नाम और मोबाइल नंबर भरें");return;} 
-  const msg = encodeURIComponent(`नमस्ते SHYAM ENTERPRISES!%0Aप्रोडक्ट: ${document.getElementById("modalTitle").innerHTML.replace("प्रोडक्ट जांच: ","")}%0Aनाम: ${name}%0Aमोबाइल: ${phone}%0Aमात्रा: ${qty||"बताई जाएगी"}`); 
+  const msg = encodeURIComponent(`नमस्ते SHYAM ENTERPRISES!%0A%0A📋 नई जांच:%0Aनाम: ${name}%0Aमोबाइल: ${phone}%0Aमात्रा: ${qty||"बताई जाएगी"}%0Aप्रोडक्ट: ${document.getElementById("modalTitle").innerHTML.replace("प्रोडक्ट जांच: ","")}`); 
   window.open(`https://wa.me/918228069790?text=${msg}`,"_blank"); 
   closeModal(); 
 }
@@ -475,11 +504,15 @@ function sendModalInquiry() {
 // Scroll and animations
 window.addEventListener("scroll",()=>{ 
   const scrolled=(window.scrollY/(document.documentElement.scrollHeight-window.innerHeight))*100; 
-  document.getElementById("progressBar").style.width=scrolled+"%"; 
-  document.getElementById("navbar").classList.toggle("scrolled",window.scrollY>60);
+  const progressBar = document.getElementById("progressBar");
+  if(progressBar) progressBar.style.width=scrolled+"%"; 
+  const navbarEl = document.getElementById("navbar");
+  if(navbarEl) navbarEl.classList.toggle("scrolled",window.scrollY>60);
   const backBtn = document.getElementById("backToTop");
-  if(window.scrollY > 300) backBtn.classList.add("show");
-  else backBtn.classList.remove("show");
+  if(backBtn) {
+    if(window.scrollY > 300) backBtn.classList.add("show");
+    else backBtn.classList.remove("show");
+  }
 });
 
 document.querySelectorAll('a[href^="#"]').forEach(a=>{
@@ -493,8 +526,10 @@ document.querySelectorAll('a[href^="#"]').forEach(a=>{
 });
 
 const hamburger=document.getElementById("hamburger"),mobileMenu=document.getElementById("mobileMenu");
-hamburger.addEventListener("click",()=>{hamburger.classList.toggle("open");mobileMenu.classList.toggle("open");});
-mobileMenu.querySelectorAll("a").forEach(a=>{a.addEventListener("click",()=>{hamburger.classList.remove("open");mobileMenu.classList.remove("open");});});
+if(hamburger && mobileMenu) {
+  hamburger.addEventListener("click",()=>{hamburger.classList.toggle("open");mobileMenu.classList.toggle("open");});
+  mobileMenu.querySelectorAll("a").forEach(a=>{a.addEventListener("click",()=>{hamburger.classList.remove("open");mobileMenu.classList.remove("open");});});
+}
 
 const observer = new IntersectionObserver(entries=>{
   entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add("visible");});
